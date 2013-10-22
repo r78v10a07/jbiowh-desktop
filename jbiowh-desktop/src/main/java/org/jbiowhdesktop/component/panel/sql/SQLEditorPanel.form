@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jScrollPane2" alignment="0" pref="836" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jScrollPane2" alignment="0" pref="600" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextPane" name="jSQLEditor">
+          <Properties>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[5, 5, 5, 5]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[836, 600]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSQLEditorMouseReleased"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSQLEditorMousePressed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jSQLEditorKeyPressed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="        StyledDocument styledDoc = jSQLEditor.getStyledDocument();&#xd;&#xa;        if (styledDoc instanceof AbstractDocument) {&#xd;&#xa;            doc = (AbstractDocument) styledDoc;&#xd;&#xa;            doc.setDocumentFilter(new SQLDocumentFilter(wHDBMSFactory));&#xd;&#xa;            doc.addUndoableEditListener(new MyUndoableEditListener());&#xd;&#xa;        }&#xd;&#xa;&#xd;&#xa;        InputMap inputMap = jSQLEditor.getInputMap();&#xd;&#xa;&#xd;&#xa;        //Ctrl-b to go backward one character&#xd;&#xa;        KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_B, Event.CTRL_MASK);&#xd;&#xa;        inputMap.put(key, DefaultEditorKit.backwardAction);&#xd;&#xa;&#xd;&#xa;        //Ctrl-f to go forward one character&#xd;&#xa;        key = KeyStroke.getKeyStroke(KeyEvent.VK_F, Event.CTRL_MASK);&#xd;&#xa;        inputMap.put(key, DefaultEditorKit.forwardAction);&#xd;&#xa;&#xd;&#xa;        //Ctrl-p to go up one line&#xd;&#xa;        key = KeyStroke.getKeyStroke(KeyEvent.VK_P, Event.CTRL_MASK);&#xd;&#xa;        inputMap.put(key, DefaultEditorKit.upAction);&#xd;&#xa;&#xd;&#xa;        //Ctrl-n to go down one line&#xd;&#xa;        key = KeyStroke.getKeyStroke(KeyEvent.VK_N, Event.CTRL_MASK);&#xd;&#xa;        inputMap.put(key, DefaultEditorKit.downAction);"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

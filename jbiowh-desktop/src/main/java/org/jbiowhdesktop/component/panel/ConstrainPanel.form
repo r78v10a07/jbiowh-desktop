@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <EmptySpace min="0" pref="836" max="32767" attributes="0"/>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Component id="jScrollPane1" alignment="0" pref="836" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <EmptySpace min="0" pref="600" max="32767" attributes="0"/>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Component id="jScrollPane1" alignment="0" pref="600" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="jTConstrain">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new org.jbiowhdesktop.component.table.model.ConstrainsTableModel(constrains, &#xd;&#xa;            new String[] {&quot;ConstrainsType&quot;, &quot;Operation&quot;, &quot;External Operation&quot;},&#xd;&#xa;            new Class[]{java.lang.Object.class, java.lang.Object.class, java.lang.Object.class},&#xd;&#xa;            new boolean[]{false, true, true})" type="code"/>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0"/>
+            </Property>
+            <Property name="fillsViewportHeight" type="boolean" value="true"/>
+            <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f0" green="f0" red="f0" type="rgb"/>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTConstrainMouseReleased"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTConstrainMousePressed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="        new javax.swing.JTable() {&#xa;&#xa;            @Override&#xa;            public String getToolTipText(java.awt.event.MouseEvent e) {&#xa;                String tip = null;&#xa;                java.awt.Point p = e.getPoint();&#xa;                int rowIndex = rowAtPoint(p);&#xa;                int colIndex = columnAtPoint(p);&#xa;                int realColumnIndex = convertColumnIndexToModel(colIndex);&#xa;&#xa;                if (realColumnIndex &gt;= 0) {&#xa;                    TableModel model = getModel();&#xa;&#xa;                    Object tipTemp = model.getValueAt(rowIndex, colIndex);&#xa;                    if (tipTemp != null) {&#xa;                        if (tipTemp instanceof String) {&#xa;                            tip = (String) tipTemp;&#xa;                        } else {&#xa;                            tip = tipTemp.toString();&#xa;                        }&#xa;                    }&#xa;&#xa;                } else {&#xa;                    tip = super.getToolTipText(e);&#xa;                }&#xa;                return tip;&#xa;            }&#xa;        };"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="        jCExternalOperation = new javax.swing.JComboBox();&#xa;        jCConstOperation = new javax.swing.JComboBox();"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="        TableColumn operationColumn = jTConstrain.getColumnModel().getColumn(1);&#xa;        operationColumn.setCellEditor(new DefaultCellEditor(jCConstOperation));&#xa;        DefaultTableCellRenderer rendererConstrain = new DefaultTableCellRenderer();&#xa;        rendererConstrain.setToolTipText(&quot;Click for combo box&quot;);&#xa;        operationColumn.setCellRenderer(rendererConstrain);&#xa;&#xa;        TableColumn logIntOperatorColumn = jTConstrain.getColumnModel().getColumn(2);&#xa;        logIntOperatorColumn.setCellEditor(new DefaultCellEditor(jCExternalOperation));&#xa;        logIntOperatorColumn.setCellRenderer(rendererConstrain);&#xa;        jTConstrains = jTConstrain;"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="        jCConstOperation.addItem(&quot;IN&quot;);&#xa;        jCConstOperation.addItem(&quot;NOT IN&quot;);&#xa;&#xa;        jCExternalOperation.addItem(&quot;AND&quot;);&#xa;        jCExternalOperation.addItem(&quot;OR&quot;);"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
