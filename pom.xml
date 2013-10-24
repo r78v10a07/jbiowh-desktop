@@ -4,7 +4,7 @@
 
     <groupId>org</groupId>
     <artifactId>jbiowh-desktop</artifactId>
-    <version>5.0.0-SNAPSHOT</version>
+    <version>5.0.0</version>
     <packaging>jar</packaging>
 
     <name>jbiowh-desktop</name>
