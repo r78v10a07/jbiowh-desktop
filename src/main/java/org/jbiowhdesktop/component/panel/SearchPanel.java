@@ -344,7 +344,7 @@ jBAddField.addActionListener(new java.awt.event.ActionListener() {
             try {
                 if (jTSearch.isVisible()) {
                     System.out.println("task");
-                    result = searchFactory.search(jTSearch.getText().toUpperCase(), createConstrains());
+                    result = searchFactory.search(jTSearch.getText(), createConstrains());
                 } else {
                     ListTableModel model = (ListTableModel) jTParameters.getModel();
                     result = searchFactory.search(model.getContents(), createConstrains());
