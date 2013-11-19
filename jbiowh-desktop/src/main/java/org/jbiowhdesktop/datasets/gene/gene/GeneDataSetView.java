@@ -6,9 +6,11 @@ import javax.swing.JComponent;
 import org.jbiowhdesktop.component.panel.AbstractDataSetView;
 import org.jbiowhdesktop.datasets.EntityParserViewProxy;
 import org.jbiowhpersistence.datasets.disease.omim.entities.OMIM;
-import org.jbiowhpersistence.datasets.gene.gene.entities.Gene2Accession;
 import org.jbiowhpersistence.datasets.gene.gene.entities.Gene2Ensembl;
+import org.jbiowhpersistence.datasets.gene.gene.entities.Gene2GenomicNucleotide;
 import org.jbiowhpersistence.datasets.gene.gene.entities.Gene2PMID;
+import org.jbiowhpersistence.datasets.gene.gene.entities.Gene2ProteinAccession;
+import org.jbiowhpersistence.datasets.gene.gene.entities.Gene2RNANucleotide;
 import org.jbiowhpersistence.datasets.gene.gene.entities.Gene2STS;
 import org.jbiowhpersistence.datasets.gene.gene.entities.Gene2UniGene;
 import org.jbiowhpersistence.datasets.gene.gene.entities.GeneGroup;
@@ -20,9 +22,9 @@ import org.jbiowhpersistence.datasets.gene.genome.entities.GenePTT;
 /**
  * This Class handled the Gene View
  *
- * $Author: r78v10a07@gmail.com $
- * $LastChangedDate: 2013-05-29 11:24:54 +0200 (Wed, 29 May 2013) $
- * $LastChangedRevision: 591 $
+ * $Author: r78v10a07@gmail.com $ $LastChangedDate: 2013-05-29 11:24:54 +0200
+ * (Wed, 29 May 2013) $ $LastChangedRevision: 591 $
+ *
  * @since Apr 18, 2012
  */
 public class GeneDataSetView extends AbstractDataSetView {
@@ -62,8 +64,14 @@ public class GeneDataSetView extends AbstractDataSetView {
         ArrayList string = new ArrayList();
         GeneInfo gene = (GeneInfo) dataSetObject;
 
-        if (!gene.getGene2Accession().isEmpty()) {
-            string.add("Gene2Accession");
+        if (!gene.getGene2ProteinAccessions().isEmpty()) {
+            string.add("ProteinAccessions");
+        }
+        if (!gene.getGene2RNANucleotides().isEmpty()) {
+            string.add("RNANucleotides");
+        }
+        if (!gene.getGene2GenomicNucleotides().isEmpty()) {
+            string.add("GenomicNucleotides");
         }
         if (gene.getGenePTT() != null) {
             string.add("GenePTT");
@@ -114,16 +122,36 @@ public class GeneDataSetView extends AbstractDataSetView {
         ArrayList<List<Object>> data = new ArrayList<>();
         if (jCLinks.getSelectedItem() != null) {
             switch (jCLinks.getSelectedItem().toString()) {
-                case "Gene2Accession":
+                case "ProteinAccessions":
                     if (findOrShow) {
                         data.clear();
-                        for (Gene2Accession dbts : gene.getGene2Accession().values()) {
+                        for (Gene2ProteinAccession dbts : gene.getGene2ProteinAccessions()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getStatus());
-                            list.add(dbts.getRNANucleotideAccession() + "." + dbts.getRNANucleotideAccessionVersion());
-                            list.add(dbts.getRNANucleotideGi());
                             list.add(dbts.getProteinAccession() + "." + dbts.getProteinAccessionVersion());
                             list.add(dbts.getProteinGi());
+
+                            data.add(list);
+                        }
+                        setjTViewColumn(data, 2);
+                    }
+                    break;
+                case "RNANucleotides":
+                    if (findOrShow) {
+                        data.clear();
+                        for (Gene2RNANucleotide dbts : gene.getGene2RNANucleotides()) {
+                            ArrayList<Object> list = new ArrayList<>();
+                            list.add(dbts.getRNANucleotideAccession() + "." + dbts.getRNANucleotideAccessionVersion());
+                            list.add(dbts.getRNANucleotideGi());
+                            data.add(list);
+                        }
+                        setjTViewColumn(data, 2);
+                    }
+                    break;
+                case "GenomicNucleotides":
+                    if (findOrShow) {
+                        data.clear();
+                        for (Gene2GenomicNucleotide dbts : gene.getGene2GenomicNucleotides()) {
+                            ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getGenomicNucleotideAccession() + "." + dbts.getGenomicNucleotideAccessionVersion());
                             list.add(dbts.getGenomicNucleotideGi());
                             list.add(dbts.getStartPositionOnTheGenomicAccession());
@@ -132,7 +160,7 @@ public class GeneDataSetView extends AbstractDataSetView {
                             list.add(dbts.getAssembly());
                             data.add(list);
                         }
-                        setjTViewColumn(data, 11);
+                        setjTViewColumn(data, 6);
                     }
                     break;
                 case "GenePTT":
@@ -159,10 +187,10 @@ public class GeneDataSetView extends AbstractDataSetView {
                 case "DBXrefs":
                     if (findOrShow) {
                         data.clear();
-                        for (GeneInfoDBXrefs dbts : gene.getGeneInfoDBXrefs().values()) {
+                        for (GeneInfoDBXrefs dbts : gene.getGeneInfoDBXrefs()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getGeneInfoDBXrefsPK().getDBName());
-                            list.add(dbts.getGeneInfoDBXrefsPK().getId());
+                            list.add(dbts.getdBName());
+                            list.add(dbts.getId());
                             data.add(list);
                         }
                         setjTViewColumn(data, 2);
@@ -171,9 +199,9 @@ public class GeneDataSetView extends AbstractDataSetView {
                 case "Synonyms":
                     if (findOrShow) {
                         data.clear();
-                        for (GeneInfoSynonyms dbts : gene.getGeneInfoSynonyms().values()) {
+                        for (GeneInfoSynonyms dbts : gene.getGeneInfoSynonyms()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getGeneInfoSynonymsPK().getSynonyms());
+                            list.add(dbts.getSynonyms());
                             data.add(list);
                         }
                         setjTViewColumn(data, 1);
@@ -197,9 +225,9 @@ public class GeneDataSetView extends AbstractDataSetView {
                 case "PMID":
                     if (findOrShow) {
                         data.clear();
-                        for (Gene2PMID dbts : gene.getGene2PMID().values()) {
+                        for (Gene2PMID dbts : gene.getGene2PMID()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getGene2PMIDPK().getPmid());
+                            list.add(dbts.getPmid());
                             data.add(list);
                         }
                         setjTViewColumn(data, 1);
@@ -208,10 +236,10 @@ public class GeneDataSetView extends AbstractDataSetView {
                 case "GeneGroup":
                     if (findOrShow) {
                         data.clear();
-                        for (GeneGroup dbts : gene.getGeneGroup().values()) {
+                        for (GeneGroup dbts : gene.getGeneGroup()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getGeneGroupPK().getOtherGeneInfoWID());
-                            list.add(dbts.getGeneGroupPK().getRelationship());
+                            list.add(dbts.getOtherGeneInfoWID());
+                            list.add(dbts.getRelationship());
                             data.add(list);
                         }
                         setjTViewColumn(data, 2);
@@ -220,9 +248,9 @@ public class GeneDataSetView extends AbstractDataSetView {
                 case "STS":
                     if (findOrShow) {
                         data.clear();
-                        for (Gene2STS dbts : gene.getGene2STS().values()) {
+                        for (Gene2STS dbts : gene.getGene2STS()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getGene2STSPK().getUniSTSID());
+                            list.add(dbts.getUniSTSID());
                             data.add(list);
                         }
                         setjTViewColumn(data, 1);
@@ -231,9 +259,9 @@ public class GeneDataSetView extends AbstractDataSetView {
                 case "UniGene":
                     if (findOrShow) {
                         data.clear();
-                        for (Gene2UniGene dbts : gene.getGene2UniGene().values()) {
+                        for (Gene2UniGene dbts : gene.getGene2UniGene()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getGene2UniGenePK().getUniGene());
+                            list.add(dbts.getUniGene());
                             data.add(list);
                         }
                         setjTViewColumn(data, 1);
