@@ -17,9 +17,9 @@ import org.jbiowhpersistence.datasets.ontology.entities.OntologyhasOntologySynon
 /**
  * This Class handled the Ontology View
  *
- * $Author: r78v10a07@gmail.com $
- * $LastChangedDate: 2012-10-03 22:11:05 +0200 (Wed, 03 Oct 2012) $
- * $LastChangedRevision: 270 $
+ * $Author: r78v10a07@gmail.com $ $LastChangedDate: 2012-10-03 22:11:05 +0200
+ * (Wed, 03 Oct 2012) $ $LastChangedRevision: 270 $
+ *
  * @since Mar 27, 2012
  */
 public class OntologyDataSetView extends AbstractDataSetView {
@@ -89,9 +89,9 @@ public class OntologyDataSetView extends AbstractDataSetView {
                 case "Alternative Id":
                     if (findOrShow) {
                         data.clear();
-                        for (OntologyAlternativeId dbts : ont.getOntologyAlternativeId().values()) {
+                        for (OntologyAlternativeId dbts : ont.getOntologyAlternativeId()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getOntologyAlternativeIdPK().getAltId());
+                            list.add(dbts.getAltId());
                             data.add(list);
                         }
                         setjTViewColumn(data, 1);
@@ -100,7 +100,7 @@ public class OntologyDataSetView extends AbstractDataSetView {
                 case "IsA":
                     if (findOrShow) {
                         data.clear();
-                        for (OntologyIsA dbts : ont.getOntologyIsA().values()) {
+                        for (OntologyIsA dbts : ont.getOntologyIsA()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getIsAOntology().getId());
                             list.add(dbts.getIsAOntology().getName());
@@ -110,7 +110,7 @@ public class OntologyDataSetView extends AbstractDataSetView {
                     } else {
                         if (jTLinks.getSelectedRow() >= 0 && jTLinks.getSelectedRow() < jTLinks.getRowCount()
                                 && jTLinks.getSelectedColumn() >= 0 && jTLinks.getSelectedRow() < jTLinks.getColumnCount()) {
-                            for (OntologyIsA dbts : ont.getOntologyIsA().values()) {
+                            for (OntologyIsA dbts : ont.getOntologyIsA()) {
                                 if (jTLinks.getValueAt(jTLinks.getSelectedRow(), 0).equals(dbts.getIsAOntology().getId())) {
                                     EntityParserViewProxy viewProxy = new EntityParserViewProxy(parentComponent, dbts.getIsAOntology());
                                     viewProxy.setVisible();
@@ -122,9 +122,9 @@ public class OntologyDataSetView extends AbstractDataSetView {
                 case "PMID":
                     if (findOrShow) {
                         data.clear();
-                        for (OntologyPMID dbts : ont.getOntologyPMID().values()) {
+                        for (OntologyPMID dbts : ont.getOntologyPMID()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getOntologyPMIDPK().getPmid());
+                            list.add(dbts.getPmid());
                             data.add(list);
                         }
                         setjTViewColumn(data, 1);
@@ -133,7 +133,7 @@ public class OntologyDataSetView extends AbstractDataSetView {
                 case "Relation":
                     if (findOrShow) {
                         data.clear();
-                        for (OntologyRelation dbts : ont.getOntologyRelation().values()) {
+                        for (OntologyRelation dbts : ont.getOntologyRelation()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getType());
                             list.add(dbts.getOtherOntology().getId());
@@ -143,7 +143,7 @@ public class OntologyDataSetView extends AbstractDataSetView {
                     } else {
                         if (jTLinks.getSelectedRow() >= 0 && jTLinks.getSelectedRow() < jTLinks.getRowCount()
                                 && jTLinks.getSelectedColumn() >= 0 && jTLinks.getSelectedRow() < jTLinks.getColumnCount()) {
-                            for (OntologyRelation dbts : ont.getOntologyRelation().values()) {
+                            for (OntologyRelation dbts : ont.getOntologyRelation()) {
                                 if (jTLinks.getValueAt(jTLinks.getSelectedRow(), 1).equals(dbts.getOtherOntology().getId())) {
                                     EntityParserViewProxy viewProxy = new EntityParserViewProxy(parentComponent, dbts.getOtherOntology());
                                     viewProxy.setVisible();

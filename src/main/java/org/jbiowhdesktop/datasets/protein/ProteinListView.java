@@ -41,8 +41,8 @@ public class ProteinListView extends AbstractListView<Protein> {
     public Protein getCollectionElementFromTableRow(int row) {
         for (Protein protein : getCollection()) {
             if (protein.getProteinName() != null) {
-                for (ProteinName proteinName : protein.getProteinName().values()) {
-                    if (getjTable().getValueAt(row, 1).equals(proteinName.getProteinNamePK().getName())) {
+                for (ProteinName proteinName : protein.getProteinName()) {
+                    if (getjTable().getValueAt(row, 1).equals(proteinName.getName())) {
                         return protein;
                     }
                 }

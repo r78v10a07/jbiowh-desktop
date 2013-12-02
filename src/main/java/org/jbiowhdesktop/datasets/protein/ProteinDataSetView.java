@@ -11,8 +11,8 @@ import org.jbiowhpersistence.datasets.protein.entities.Protein;
 import org.jbiowhpersistence.datasets.protein.entities.ProteinAccessionNumber;
 import org.jbiowhpersistence.datasets.protein.entities.ProteinComment;
 import org.jbiowhpersistence.datasets.protein.entities.ProteinDBReference;
+import org.jbiowhpersistence.datasets.protein.entities.ProteinKeyword;
 import org.jbiowhpersistence.datasets.protein.entities.ProteinLongName;
-import org.jbiowhpersistence.datasets.protein.entities.ProteinhasProteinKeyword;
 import org.jbiowhpersistence.datasets.taxonomy.entities.Taxonomy;
 
 /**
@@ -85,7 +85,7 @@ public class ProteinDataSetView extends AbstractDataSetView {
         if (!protein.getProteinComment().isEmpty()) {
             string.add("Comment");
         }
-        if (!protein.getProteinhasProteinKeyword().isEmpty()) {
+        if (!protein.getProteinKeyword().isEmpty()) {
             string.add("Keyword");
         }
         if (!protein.getProteinDBReference().isEmpty()) {
@@ -161,9 +161,9 @@ public class ProteinDataSetView extends AbstractDataSetView {
                 case "Accession Number":
                     if (findOrShow) {
                         data.clear();
-                        for (ProteinAccessionNumber dbts : protein.getProteinAccessionNumber().values()) {
+                        for (ProteinAccessionNumber dbts : protein.getProteinAccessionNumber()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getProteinAccessionNumberPK().getAccessionNumber());
+                            list.add(dbts.getAccessionNumber());
                             data.add(list);
                         }
                         setjTViewColumn(data, 1);
@@ -177,8 +177,8 @@ public class ProteinDataSetView extends AbstractDataSetView {
                             list.add(dbts.getName());
                             list.add(dbts.getProteinNameDef());
                             list.add(dbts.getType());
-                            list.add(dbts.getComponent());
-                            list.add(dbts.getDomain());
+                            list.add(dbts.isComponent());
+                            list.add(dbts.isDomain());
                             list.add(dbts.getEvidence());
                             list.add(dbts.getStatus());
                             data.add(list);
@@ -201,9 +201,9 @@ public class ProteinDataSetView extends AbstractDataSetView {
                 case "Keyword":
                     if (findOrShow) {
                         data.clear();
-                        for (ProteinhasProteinKeyword dbts : protein.getProteinhasProteinKeyword().values()) {
+                        for (ProteinKeyword dbts : protein.getProteinKeyword()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getProteinKeyword().getKeyword());
+                            list.add(dbts.getKeyword());
                             data.add(list);
                         }
                         setjTViewColumn(data, 1);
