@@ -64,22 +64,22 @@ public class GeneDataSetView extends AbstractDataSetView {
         ArrayList string = new ArrayList();
         GeneInfo gene = (GeneInfo) dataSetObject;
 
-        if (!gene.getGene2ProteinAccessions().isEmpty()) {
+        if (!gene.getGene2ProteinAccession().isEmpty()) {
             string.add("ProteinAccessions");
         }
-        if (!gene.getGene2RNANucleotides().isEmpty()) {
+        if (!gene.getGene2RNANucleotide().isEmpty()) {
             string.add("RNANucleotides");
         }
-        if (!gene.getGene2GenomicNucleotides().isEmpty()) {
+        if (!gene.getGene2GenomicNucleotide().isEmpty()) {
             string.add("GenomicNucleotides");
         }
         if (gene.getGenePTT() != null) {
             string.add("GenePTT");
         }
-        if (!gene.getGeneInfoDBXrefs().isEmpty()) {
+        if (!gene.getGeneInfoDBXref().isEmpty()) {
             string.add("DBXrefs");
         }
-        if (!gene.getGeneInfoSynonyms().isEmpty()) {
+        if (!gene.getGeneInfoSynonym().isEmpty()) {
             string.add("Synonyms");
         }
         if (!gene.getGene2Ensembl().isEmpty()) {
@@ -125,7 +125,7 @@ public class GeneDataSetView extends AbstractDataSetView {
                 case "ProteinAccessions":
                     if (findOrShow) {
                         data.clear();
-                        for (Gene2ProteinAccession dbts : gene.getGene2ProteinAccessions()) {
+                        for (Gene2ProteinAccession dbts : gene.getGene2ProteinAccession()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getProteinAccession() + "." + dbts.getProteinAccessionVersion());
                             list.add(dbts.getProteinGi());
@@ -138,7 +138,7 @@ public class GeneDataSetView extends AbstractDataSetView {
                 case "RNANucleotides":
                     if (findOrShow) {
                         data.clear();
-                        for (Gene2RNANucleotide dbts : gene.getGene2RNANucleotides()) {
+                        for (Gene2RNANucleotide dbts : gene.getGene2RNANucleotide()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getRNANucleotideAccession() + "." + dbts.getRNANucleotideAccessionVersion());
                             list.add(dbts.getRNANucleotideGi());
@@ -150,7 +150,7 @@ public class GeneDataSetView extends AbstractDataSetView {
                 case "GenomicNucleotides":
                     if (findOrShow) {
                         data.clear();
-                        for (Gene2GenomicNucleotide dbts : gene.getGene2GenomicNucleotides()) {
+                        for (Gene2GenomicNucleotide dbts : gene.getGene2GenomicNucleotide()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getGenomicNucleotideAccession() + "." + dbts.getGenomicNucleotideAccessionVersion());
                             list.add(dbts.getGenomicNucleotideGi());
@@ -187,7 +187,7 @@ public class GeneDataSetView extends AbstractDataSetView {
                 case "DBXrefs":
                     if (findOrShow) {
                         data.clear();
-                        for (GeneInfoDBXrefs dbts : gene.getGeneInfoDBXrefs()) {
+                        for (GeneInfoDBXrefs dbts : gene.getGeneInfoDBXref()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getdBName());
                             list.add(dbts.getId());
@@ -199,7 +199,7 @@ public class GeneDataSetView extends AbstractDataSetView {
                 case "Synonyms":
                     if (findOrShow) {
                         data.clear();
-                        for (GeneInfoSynonyms dbts : gene.getGeneInfoSynonyms()) {
+                        for (GeneInfoSynonyms dbts : gene.getGeneInfoSynonym()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getSynonyms());
                             data.add(list);

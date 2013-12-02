@@ -12,9 +12,9 @@ import org.jbiowhpersistence.datasets.taxonomy.entities.TaxonomyUnParseCitation;
 /**
  * This Class handled the Taxonomy View
  *
- * $Author: r78v10a07@gmail.com $
- * $LastChangedDate: 2012-10-03 22:11:05 +0200 (Wed, 03 Oct 2012) $
- * $LastChangedRevision: 270 $
+ * $Author: r78v10a07@gmail.com $ $LastChangedDate: 2012-10-03 22:11:05 +0200
+ * (Wed, 03 Oct 2012) $ $LastChangedRevision: 270 $
+ *
  * @since Mar 26, 2012
  */
 public class TaxonomyDataSetView extends AbstractDataSetView {
@@ -75,9 +75,9 @@ public class TaxonomyDataSetView extends AbstractDataSetView {
                 case "Synonym":
                     if (findOrShow) {
                         data.clear();
-                        for (TaxonomySynonym dbts : tax.getSynonym().values()) {
+                        for (TaxonomySynonym dbts : tax.getSynonym()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getTaxonomySynonymPK().getSynonym());
+                            list.add(dbts.getSynonym());
                             data.add(list);
                         }
                         setjTViewColumn(data, 1);
@@ -86,9 +86,9 @@ public class TaxonomyDataSetView extends AbstractDataSetView {
                 case "PMID":
                     if (findOrShow) {
                         data.clear();
-                        for (TaxonomyPMID dbts : tax.getPmid().values()) {
+                        for (TaxonomyPMID dbts : tax.getPmid()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getTaxonomyPMIDPK().getPmid());
+                            list.add(dbts.getPmid());
                             data.add(list);
                         }
                         setjTViewColumn(data, 1);

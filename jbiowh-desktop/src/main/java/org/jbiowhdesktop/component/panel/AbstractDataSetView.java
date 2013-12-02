@@ -32,6 +32,7 @@ import org.jbiowhpersistence.utils.entitymanager.EntityParserFieldProxy;
  *
  * $Author: r78v10a07@gmail.com $ $LastChangedDate: 2012-11-08 14:37:19 +0100
  * (Thu, 08 Nov 2012) $ $LastChangedRevision: 591 $
+ *
  * @since Mar 26, 2012
  */
 public abstract class AbstractDataSetView extends javax.swing.JPanel {
@@ -79,7 +80,7 @@ public abstract class AbstractDataSetView extends javax.swing.JPanel {
             ((JTabbedPane) parentComponent).addTab(EntityParserFieldProxy.getInstance().getId(dataSetObject), this);
             ((JTabbedPane) parentComponent).setTabComponentAt(((JTabbedPane) parentComponent).getTabCount() - 1,
                     new ClosePanel((JTabbedPane) parentComponent,
-                    EntityParserFieldProxy.getInstance().getId(dataSetObject), uniqueKey, new TabbedPanelCloseActionListener(parentComponent)));
+                            EntityParserFieldProxy.getInstance().getId(dataSetObject), uniqueKey, new TabbedPanelCloseActionListener(parentComponent)));
             ((JTabbedPane) parentComponent).setSelectedIndex(((JTabbedPane) parentComponent).getTabCount() - 1);
         }
     }
@@ -258,8 +259,8 @@ public abstract class AbstractDataSetView extends javax.swing.JPanel {
                 if (protein != null) {
                     for (Protein dbts : protein) {
                         if (dbts.getProteinName() != null) {
-                            for (ProteinName proteinName : dbts.getProteinName().values()) {
-                                if (jTLinks.getValueAt(jTLinks.getSelectedRow(), 0).equals(proteinName.getProteinNamePK().getName())) {
+                            for (ProteinName proteinName : dbts.getProteinName()) {
+                                if (jTLinks.getValueAt(jTLinks.getSelectedRow(), 0).equals(proteinName.getName())) {
                                     EntityParserViewProxy viewProxy = new EntityParserViewProxy(parentComponent, dbts);
                                     viewProxy.setVisible();
                                     break;
