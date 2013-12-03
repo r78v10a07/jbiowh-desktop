@@ -10,9 +10,9 @@ import org.jbiowhpersistence.datasets.disease.omim.entities.OMIMTI;
 /**
  * This Class handled the OMIM View
  *
- * $Author: r78v10a07@gmail.com $
- * $LastChangedDate: 2012-10-03 22:11:05 +0200 (Wed, 03 Oct 2012) $
- * $LastChangedRevision: 270 $
+ * $Author: r78v10a07@gmail.com $ $LastChangedDate: 2012-10-03 22:11:05 +0200
+ * (Wed, 03 Oct 2012) $ $LastChangedRevision: 270 $
+ *
  * @since Jul 25, 2012
  */
 public class OMIMDataSetView extends AbstractDataSetView {
@@ -33,10 +33,10 @@ public class OMIMDataSetView extends AbstractDataSetView {
         OMIM omim = (OMIM) dataSetObject;
 
         basicData.add("Name: " + omim.getOmimId() + "\n");
-        if (!omim.getOmimTIs().isEmpty()) {
+        if (!omim.getOmimTI().isEmpty()) {
             basicData.add("Title: \n");
-            for (OMIMTI ti : omim.getOmimTIs().values()) {
-                basicData.add("\t" + ti.getOMIMTIPK().getTi() + "\n");
+            for (OMIMTI ti : omim.getOmimTI()) {
+                basicData.add("\t" + ti.getTi() + "\n");
             }
         }
         basicData.add("TEXT: " + omim.getTx() + "\n");
@@ -48,7 +48,7 @@ public class OMIMDataSetView extends AbstractDataSetView {
         List string = new ArrayList();
         OMIM omim = (OMIM) dataSetObject;
 
-        if (!omim.getGeneInfos().isEmpty()) {
+        if (!omim.getGeneInfo().isEmpty()) {
             string.add("Gene");
         }
 
@@ -62,7 +62,7 @@ public class OMIMDataSetView extends AbstractDataSetView {
         if (jCLinks.getSelectedItem() != null) {
             switch (jCLinks.getSelectedItem().toString()) {
                 case "Gene":
-                    getGeneLink(findOrShow, omim.getGeneInfos());
+                    getGeneLink(findOrShow, omim.getGeneInfo());
                     break;
             }
         }
