@@ -32,8 +32,8 @@ public class OMIMListView extends AbstractListView<OMIM> {
         ArrayList<Object> column = new ArrayList<>();
         column.add(false);
         column.add(data.getOmimId());
-        if (!data.getOmimTIs().isEmpty()) {
-            column.add(data.getOmimTIs().values().iterator().next().getOMIMTIPK().getTi());
+        if (!data.getOmimTI().isEmpty()) {
+            column.add(data.getOmimTI().iterator().next().getTi());
         } else {
             column.add("");
         }
