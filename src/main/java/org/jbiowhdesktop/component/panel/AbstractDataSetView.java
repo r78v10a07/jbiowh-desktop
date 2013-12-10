@@ -468,7 +468,7 @@ public abstract class AbstractDataSetView extends javax.swing.JPanel {
             for (DrugBank dbts : drugBank) {
                 ArrayList<Object> list = new ArrayList<>();
                 list.add(dbts.getId());
-                list.add(dbts.getCASNumber());
+                list.add(dbts.getcASNumber());
                 list.add(dbts.getName());
                 data.add(list);
             }
