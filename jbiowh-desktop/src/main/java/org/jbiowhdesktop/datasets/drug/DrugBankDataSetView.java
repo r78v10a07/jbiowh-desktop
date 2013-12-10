@@ -8,37 +8,37 @@ import org.jbiowhcore.logger.VerbLogger;
 import org.jbiowhdesktop.component.panel.AbstractDataSetView;
 import org.jbiowhdesktop.datasets.EntityParserViewProxy;
 import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBank;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankAHFSCodes;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankATCCodes;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankAffectedOrganisms;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankBrands;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankCalculatedProperties;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankCategories;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankDosages;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankDrugInteractions;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankExperimentalProperties;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankExternalIdentifiers;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankExternalLinks;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankFoodInteractions;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankAHFSCode;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankATCCode;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankAffectedOrganism;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankBrand;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankCalculatedProperty;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankCategory;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankDosage;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankDrugInteraction;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankExperimentalProperty;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankExternalIdentifier;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankExternalLink;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankFoodInteraction;
 import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankGeneralRef;
 import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankGroup;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankManufacturers;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankMixtures;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankPackagers;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankPatents;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankPrices;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankSecondAccessionNumbers;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankSynonyms;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankManufacturer;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankMixture;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankPackager;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankPatent;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankPrice;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankSecondAccessionNumber;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankSynonym;
 import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankTaxonomy;
-import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankTaxonomySubstructures;
+import org.jbiowhpersistence.datasets.drug.drugbank.entities.DrugBankTaxonomySubstructure;
 import org.jbiowhpersistence.datasets.drug.drugbank.search.SearchDrugBank;
 
 /**
  * This Class handled the DrugBank View
  *
- * $Author: r78v10a07@gmail.com $
- * $LastChangedDate: 2013-03-19 09:38:47 +0100 (Tue, 19 Mar 2013) $
- * $LastChangedRevision: 396 $
+ * $Author: r78v10a07@gmail.com $ $LastChangedDate: 2013-03-19 09:38:47 +0100
+ * (Tue, 19 Mar 2013) $ $LastChangedRevision: 396 $
+ *
  * @since Apr 20, 2012
  */
 public class DrugBankDataSetView extends AbstractDataSetView {
@@ -59,7 +59,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
         DrugBank drug = (DrugBank) dataSetObject;
 
         basicData.add("Name: " + drug.getName() + "\n");
-        basicData.add("CAS: " + drug.getCASNumber() + "\n");
+        basicData.add("CAS: " + drug.getcASNumber() + "\n");
         basicData.add("Version: " + drug.getVersion() + "\n");
         basicData.add("Updated: " + drug.getUpdated() + "\n");
         basicData.add("Created: " + drug.getCreated() + "\n\n");
@@ -85,25 +85,25 @@ public class DrugBankDataSetView extends AbstractDataSetView {
         List string = new ArrayList();
         DrugBank drug = (DrugBank) dataSetObject;
 
-        if (!drug.getDrugBankSecondAccessionNumbers().isEmpty()) {
+        if (!drug.getDrugBankSecondAccessionNumber().isEmpty()) {
             string.add("Second Accession Number");
         }
-        if (!drug.getDrugBankSynonyms().isEmpty()) {
+        if (!drug.getDrugBankSynonym().isEmpty()) {
             string.add("Synonym");
         }
-        if (!drug.getDrugBankBrands().isEmpty()) {
+        if (!drug.getDrugBankBrand().isEmpty()) {
             string.add("Brands");
         }
-        if (!drug.getDrugBankMixtures().isEmpty()) {
+        if (!drug.getDrugBankMixture().isEmpty()) {
             string.add("Mixtures");
         }
         if (!drug.getDrugBankGeneralRef().isEmpty()) {
             string.add("General References");
         }
-        if (!drug.getDrugBankPackagers().isEmpty()) {
+        if (!drug.getDrugBankPackager().isEmpty()) {
             string.add("Packagers");
         }
-        if (!drug.getDrugBankManufacturers().isEmpty()) {
+        if (!drug.getDrugBankManufacturer().isEmpty()) {
             string.add("Manofactures");
         }
         if (!drug.getDrugBankGroup().isEmpty()) {
@@ -112,46 +112,46 @@ public class DrugBankDataSetView extends AbstractDataSetView {
         if (!drug.getDrugBankTaxonomy().isEmpty()) {
             string.add("Taxonomy");
         }
-        if (!drug.getDrugBankTaxonomySubstructures().isEmpty()) {
+        if (!drug.getDrugBankTaxonomySubstructure().isEmpty()) {
             string.add("Taxonomy Substructure");
         }
-        if (!drug.getDrugBankPrices().isEmpty()) {
+        if (!drug.getDrugBankPrice().isEmpty()) {
             string.add("Prices");
         }
-        if (!drug.getDrugBankFoodInteractions().isEmpty()) {
+        if (!drug.getDrugBankFoodInteraction().isEmpty()) {
             string.add("Food Interactions");
         }
-        if (!drug.getDrugBankCategories().isEmpty()) {
+        if (!drug.getDrugBankCategory().isEmpty()) {
             string.add("Categories");
         }
-        if (!drug.getDrugBankDrugInteractions().isEmpty()) {
+        if (!drug.getDrugBankDrugInteraction().isEmpty()) {
             string.add("Drug Interactions");
         }
-        if (!drug.getDrugBankDosages().isEmpty()) {
+        if (!drug.getDrugBankDosage().isEmpty()) {
             string.add("Dosages");
         }
-        if (!drug.getDrugBankATCCodes().isEmpty()) {
+        if (!drug.getDrugBankATCCode().isEmpty()) {
             string.add("ATCCodes");
         }
-        if (!drug.getDrugBankAHFSCodes().isEmpty()) {
+        if (!drug.getDrugBankAHFSCode().isEmpty()) {
             string.add("AHFSCodes");
         }
-        if (!drug.getDrugBankAffectedOrganisms().isEmpty()) {
+        if (!drug.getDrugBankAffectedOrganism().isEmpty()) {
             string.add("Affected Organisms");
         }
-        if (!drug.getDrugBankPatents().isEmpty()) {
+        if (!drug.getDrugBankPatent().isEmpty()) {
             string.add("Patents");
         }
-        if (!drug.getDrugBankExternalIdentifiers().isEmpty()) {
+        if (!drug.getDrugBankExternalIdentifier().isEmpty()) {
             string.add("External Identifiers");
         }
-        if (!drug.getDrugBankExternalLinks().isEmpty()) {
+        if (!drug.getDrugBankExternalLink().isEmpty()) {
             string.add("External Links");
         }
-        if (!drug.getDrugBankCalculatedProperties().isEmpty()) {
+        if (!drug.getDrugBankCalculatedProperty().isEmpty()) {
             string.add("Calculated Properties");
         }
-        if (!drug.getDrugBankExperimentalProperties().isEmpty()) {
+        if (!drug.getDrugBankExperimentalProperty().isEmpty()) {
             string.add("Experimental Properties");
         }
         if (!drug.getProtein().isEmpty()) {
@@ -197,7 +197,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Experimental Properties":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankExperimentalProperties dbts : drug.getDrugBankExperimentalProperties()) {
+                        for (DrugBankExperimentalProperty dbts : drug.getDrugBankExperimentalProperty()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getKind());
                             list.add(dbts.getValue());
@@ -210,7 +210,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Calculated Properties":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankCalculatedProperties dbts : drug.getDrugBankCalculatedProperties()) {
+                        for (DrugBankCalculatedProperty dbts : drug.getDrugBankCalculatedProperty()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getKind());
                             list.add(dbts.getValue());
@@ -223,7 +223,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "External Links":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankExternalLinks dbts : drug.getDrugBankExternalLinks()) {
+                        for (DrugBankExternalLink dbts : drug.getDrugBankExternalLink()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getResource());
                             list.add(dbts.getUrl());
@@ -235,7 +235,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "External Identifiers":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankExternalIdentifiers dbts : drug.getDrugBankExternalIdentifiers()) {
+                        for (DrugBankExternalIdentifier dbts : drug.getDrugBankExternalIdentifier()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getIdentifier());
                             list.add(dbts.getResource());
@@ -247,7 +247,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Patents":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankPatents dbts : drug.getDrugBankPatents()) {
+                        for (DrugBankPatent dbts : drug.getDrugBankPatent()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getNumber());
                             list.add(dbts.getCountry());
@@ -261,7 +261,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Affected Organisms":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankAffectedOrganisms dbts : drug.getDrugBankAffectedOrganisms()) {
+                        for (DrugBankAffectedOrganism dbts : drug.getDrugBankAffectedOrganism()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getAffectedOrganisms());
                             data.add(list);
@@ -272,9 +272,9 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "AHFSCodes":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankAHFSCodes dbts : drug.getDrugBankAHFSCodes()) {
+                        for (DrugBankAHFSCode dbts : drug.getDrugBankAHFSCode()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getAHFSCodes());
+                            list.add(dbts.getaHFSCodes());
                             data.add(list);
                         }
                         setjTViewColumn(data, 1);
@@ -283,9 +283,9 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "ATCCodes":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankATCCodes dbts : drug.getDrugBankATCCodes()) {
+                        for (DrugBankATCCode dbts : drug.getDrugBankATCCode()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getATCCode());
+                            list.add(dbts.getaTCCode());
                             data.add(list);
                         }
                         setjTViewColumn(data, 1);
@@ -294,7 +294,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Dosages":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankDosages dbts : drug.getDrugBankDosages()) {
+                        for (DrugBankDosage dbts : drug.getDrugBankDosage()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getForm());
                             list.add(dbts.getRoute());
@@ -307,21 +307,21 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Drug Interactions":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankDrugInteractions dbts : drug.getDrugBankDrugInteractions().values()) {
+                        for (DrugBankDrugInteraction dbts : drug.getDrugBankDrugInteraction()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getDrugBankDrugInteractionsPK().getDrug());
+                            list.add(dbts.getDrug());
                             list.add(dbts.getDescription());
                             data.add(list);
                         }
                         setjTViewColumn(data, 2);
                     } else {
                         if (jTLinks.getSelectedRow() >= 0 && jTLinks.getSelectedRow() < jTLinks.getRowCount()) {
-                            for (DrugBankDrugInteractions dbts : drug.getDrugBankDrugInteractions().values()) {
-                                if (jTLinks.getValueAt(jTLinks.getSelectedRow(), 0).equals(dbts.getDrugBankDrugInteractionsPK().getDrug())) {
+                            for (DrugBankDrugInteraction dbts : drug.getDrugBankDrugInteraction()) {
+                                if (jTLinks.getValueAt(jTLinks.getSelectedRow(), 0).equals(dbts.getDrug())) {
                                     try {
                                         SearchDrugBank drugSearch = new SearchDrugBank();
                                         String nameFormat = "DB";
-                                        String dname = (new Long(dbts.getDrugBankDrugInteractionsPK().getDrug())).toString();
+                                        String dname = (new Long(dbts.getDrug())).toString();
                                         for (int i = 0; i < 5 - dname.length(); i++) {
                                             nameFormat = nameFormat + "0";
                                         }
@@ -342,7 +342,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Categories":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankCategories dbts : drug.getDrugBankCategories()) {
+                        for (DrugBankCategory dbts : drug.getDrugBankCategory()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getCategory());
                             data.add(list);
@@ -353,7 +353,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Food Interactions":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankFoodInteractions dbts : drug.getDrugBankFoodInteractions()) {
+                        for (DrugBankFoodInteraction dbts : drug.getDrugBankFoodInteraction()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getFoodInteractions());
                             data.add(list);
@@ -364,7 +364,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Prices":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankPrices dbts : drug.getDrugBankPrices()) {
+                        for (DrugBankPrice dbts : drug.getDrugBankPrice()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getDescription());
                             list.add(dbts.getCost());
@@ -378,7 +378,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Manofactures":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankManufacturers dbts : drug.getDrugBankManufacturers()) {
+                        for (DrugBankManufacturer dbts : drug.getDrugBankManufacturer()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getGeneric());
                             list.add(dbts.getManufacturer());
@@ -390,7 +390,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Taxonomy Substructure":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankTaxonomySubstructures dbts : drug.getDrugBankTaxonomySubstructures()) {
+                        for (DrugBankTaxonomySubstructure dbts : drug.getDrugBankTaxonomySubstructure()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getClass1());
                             list.add(dbts.getSubstructure());
@@ -424,7 +424,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Packager":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankPackagers dbts : drug.getDrugBankPackagers()) {
+                        for (DrugBankPackager dbts : drug.getDrugBankPackager()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getName());
                             list.add(dbts.getUrl());
@@ -448,7 +448,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Mixtures":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankMixtures dbts : drug.getDrugBankMixtures()) {
+                        for (DrugBankMixture dbts : drug.getDrugBankMixture()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getName());
                             list.add(dbts.getIngredients());
@@ -460,7 +460,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Second Accession Number":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankSecondAccessionNumbers dbts : drug.getDrugBankSecondAccessionNumbers()) {
+                        for (DrugBankSecondAccessionNumber dbts : drug.getDrugBankSecondAccessionNumber()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getAccessionNumber());
                             data.add(list);
@@ -471,7 +471,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Synonym":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankSynonyms dbts : drug.getDrugBankSynonyms()) {
+                        for (DrugBankSynonym dbts : drug.getDrugBankSynonym()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getSynonym());
                             data.add(list);
@@ -482,7 +482,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                 case "Brands":
                     if (findOrShow) {
                         data.clear();
-                        for (DrugBankBrands dbts : drug.getDrugBankBrands()) {
+                        for (DrugBankBrand dbts : drug.getDrugBankBrand()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getBrand());
                             data.add(list);
