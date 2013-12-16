@@ -13,6 +13,7 @@ import org.jbiowhpersistence.datasets.protein.entities.ProteinComment;
 import org.jbiowhpersistence.datasets.protein.entities.ProteinDBReference;
 import org.jbiowhpersistence.datasets.protein.entities.ProteinKeyword;
 import org.jbiowhpersistence.datasets.protein.entities.ProteinLongName;
+import org.jbiowhpersistence.datasets.protgroup.pirsf.entities.PirsfhasProtein;
 import org.jbiowhpersistence.datasets.taxonomy.entities.Taxonomy;
 
 /**
@@ -76,50 +77,53 @@ public class ProteinDataSetView extends AbstractDataSetView {
         ArrayList string = new ArrayList();
         Protein protein = (Protein) dataSetObject;
 
-        if (!protein.getProteinAccessionNumber().isEmpty()) {
+        if (protein.getProteinAccessionNumber() != null && !protein.getProteinAccessionNumber().isEmpty()) {
             string.add("Accession Number");
         }
-        if (!protein.getProteinLongName().isEmpty()) {
+        if (protein.getProteinLongName() != null && !protein.getProteinLongName().isEmpty()) {
             string.add("Name");
         }
-        if (!protein.getProteinComment().isEmpty()) {
+        if (protein.getProteinComment() != null && !protein.getProteinComment().isEmpty()) {
             string.add("Comment");
         }
-        if (!protein.getProteinKeyword().isEmpty()) {
+        if (protein.getProteinKeyword() != null && !protein.getProteinKeyword().isEmpty()) {
             string.add("Keyword");
         }
-        if (!protein.getProteinDBReference().isEmpty()) {
+        if (protein.getProteinDBReference() != null && !protein.getProteinDBReference().isEmpty()) {
             string.add("DBReference");
         }
-        if (!protein.getOntology().isEmpty()) {
+        if (protein.getOntology() != null && !protein.getOntology().isEmpty()) {
             string.add("Ontology");
         }
-        if (!protein.getGeneInfo().isEmpty()) {
+        if (protein.getGeneInfo() != null && !protein.getGeneInfo().isEmpty()) {
             string.add("Gene");
         }
         if (protein.getGenePTT() != null) {
             string.add("GenePTT");
         }
-        if (!protein.getDrugBank().isEmpty()) {
+        if (protein.getDrugBank() != null && !protein.getDrugBank().isEmpty()) {
             string.add("DrugBank");
         }
-        if (!protein.getDrugBankAsEnzyme().isEmpty()) {
+        if (protein.getDrugBankAsEnzyme() != null && !protein.getDrugBankAsEnzyme().isEmpty()) {
             string.add("DrugBank As Enzyme");
         }
-        if (!protein.getDrugBankAsCarriers().isEmpty()) {
+        if (protein.getDrugBankAsCarriers() != null && !protein.getDrugBankAsCarriers().isEmpty()) {
             string.add("DrugBank As Carrier");
         }
-        if (!protein.getDrugBankAsTransporters().isEmpty()) {
+        if (protein.getDrugBankAsTransporters() != null && !protein.getDrugBankAsTransporters().isEmpty()) {
             string.add("DrugBank As Transporter");
         }
-        if (!protein.getUniRefEntry().isEmpty()) {
+        if (protein.getUniRefEntry() != null && !protein.getUniRefEntry().isEmpty()) {
             string.add("UniRef");
         }
-        if (!protein.getkEGGEnzymes().isEmpty()) {
+        if (protein.getkEGGEnzymes() != null && !protein.getkEGGEnzymes().isEmpty()) {
             string.add("Enzymes");
         }
-        if (!protein.getkEGGPathways().isEmpty()) {
+        if (protein.getkEGGPathways() != null && !protein.getkEGGPathways().isEmpty()) {
             string.add("Pathways");
+        }
+        if (protein.getpIRSFhasProtein() != null && !protein.getpIRSFhasProtein().isEmpty()) {
+            string.add("PIRSF");
         }
 
         return string;
@@ -256,6 +260,40 @@ public class ProteinDataSetView extends AbstractDataSetView {
                                     EntityParserViewProxy viewProxy = new EntityParserViewProxy(parentComponent, dbts);
                                     viewProxy.setVisible();
                                     break;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "PIRSF":
+                    if (findOrShow) {
+                        data.clear();
+                        if (protein.getpIRSFhasProtein() != null) {
+                            for (PirsfhasProtein dbts : protein.getpIRSFhasProtein().values()) {
+                                if (dbts.getProtein() != null) {
+                                    ArrayList<Object> list = new ArrayList<>();
+                                    list.add(dbts.getPirsf().getpIRSFnumber());
+                                    list.add(dbts.getPirsf().getName());
+                                    list.add(dbts.getPirsf().getCurationStatus());
+                                    list.add(dbts.getPirsf().getParent());
+                                    data.add(list);
+                                }
+                            }
+                        }
+                        setjTViewColumn(data, 3);
+                    } else {
+                        if (jTLinks.getSelectedRow() >= 0 && jTLinks.getSelectedRow() < jTLinks.getRowCount()) {
+                            if (protein.getpIRSFhasProtein() != null) {
+                                for (PirsfhasProtein dbts : protein.getpIRSFhasProtein().values()) {
+                                    if (dbts.getProtein() != null) {
+                                        if (dbts.getPirsf() != null) {
+                                            if (jTLinks.getValueAt(jTLinks.getSelectedRow(), 0).equals(dbts.getPirsf().getpIRSFnumber())) {
+                                                EntityParserViewProxy viewProxy = new EntityParserViewProxy(parentComponent, dbts.getPirsf());
+                                                viewProxy.setVisible();
+                                                break;
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
