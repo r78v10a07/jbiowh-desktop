@@ -39,6 +39,7 @@ import org.jbiowhpersistence.datasets.pathway.kegg.search.SearchKEGGPathway;
 import org.jbiowhpersistence.datasets.pathway.kegg.search.SearchKEGGReaction;
 import org.jbiowhpersistence.datasets.protclust.search.SearchUniRef;
 import org.jbiowhpersistence.datasets.protein.search.SearchProtein;
+import org.jbiowhpersistence.datasets.protgroup.pirsf.search.SearchPirsf;
 import org.jbiowhpersistence.datasets.taxonomy.search.SearchTaxonomy;
 import org.jbiowhpersistence.utils.entitymanager.EntityParserFieldProxy;
 import org.jbiowhpersistence.utils.search.SearchFactory;
@@ -55,6 +56,8 @@ public class SearchPanel extends BasicConstrain {
 
     /**
      * Creates new form SearchPanel
+     *
+     * @param parentComponent
      */
     public SearchPanel(JComponent parentComponent) {
         this.parentComponent = parentComponent;
@@ -570,6 +573,10 @@ jBAddField.addActionListener(new java.awt.event.ActionListener() {
                 break;
             case "GeneBank":
                 searchFactory = new SearchGeneBank();
+                setConstrainsVisible(true);
+                break;
+            case "PIRSF":
+                searchFactory = new SearchPirsf();
                 setConstrainsVisible(true);
                 break;
             default:

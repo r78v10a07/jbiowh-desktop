@@ -27,6 +27,7 @@ import org.jbiowhpersistence.datasets.pathway.kegg.KEGGTables;
 import org.jbiowhpersistence.datasets.ppi.MIF25Tables;
 import org.jbiowhpersistence.datasets.protclust.UniRefTables;
 import org.jbiowhpersistence.datasets.protein.ProteinTables;
+import org.jbiowhpersistence.datasets.protgroup.pirsf.PirsfTables;
 import org.jbiowhpersistence.datasets.taxonomy.TaxonomyTables;
 import org.jbiowhpersistence.utils.entitymanager.JBioWHPersistence;
 
@@ -248,6 +249,9 @@ jTables.addMouseListener(new java.awt.event.MouseAdapter() {
                     break;
                 case "GeneBankLoader":
                     model.setContents(whdbmsFactory.countTablesRow(GeneBankTables.getInstance().getTables()));
+                    break;
+                case "PIRSFLoader":
+                    model.setContents(whdbmsFactory.countTablesRow(PirsfTables.getInstance().getTables()));
                     break;
             }
 

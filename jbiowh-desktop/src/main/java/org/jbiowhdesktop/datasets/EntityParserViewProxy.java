@@ -19,6 +19,7 @@ import org.jbiowhdesktop.datasets.pathway.glycan.KEGGGlycanDataSetView;
 import org.jbiowhdesktop.datasets.pathway.reaction.KEGGReactionDataSetView;
 import org.jbiowhdesktop.datasets.protein.ProteinDataSetView;
 import org.jbiowhdesktop.datasets.protfam.ProtFamDataSetView;
+import org.jbiowhdesktop.datasets.protgroup.pirsf.PirsfDataSetView;
 import org.jbiowhdesktop.datasets.taxonomy.TaxonomyDataSetView;
 import org.jbiowhpersistence.datasets.disease.omim.entities.OMIM;
 import org.jbiowhpersistence.datasets.domain.pfam.entities.PfamAbioWH;
@@ -35,14 +36,15 @@ import org.jbiowhpersistence.datasets.pathway.kegg.entities.pathway.KEGGPathway;
 import org.jbiowhpersistence.datasets.pathway.kegg.entities.reaction.KEGGReaction;
 import org.jbiowhpersistence.datasets.protclust.entities.UniRefEntry;
 import org.jbiowhpersistence.datasets.protein.entities.Protein;
+import org.jbiowhpersistence.datasets.protgroup.pirsf.entities.Pirsf;
 import org.jbiowhpersistence.datasets.taxonomy.entities.Taxonomy;
 
 /**
  * This Class is to visualize the correct Dataset Entity
  *
- * $Author: r78v10a07@gmail.com $
- * $LastChangedDate: 2013-05-29 11:24:54 +0200 (Wed, 29 May 2013) $
- * $LastChangedRevision: 591 $
+ * $Author: r78v10a07@gmail.com $ $LastChangedDate: 2013-05-29 11:24:54 +0200
+ * (Wed, 29 May 2013) $ $LastChangedRevision: 591 $
+ *
  * @since Mar 26, 2012
  */
 public class EntityParserViewProxy {
@@ -103,7 +105,9 @@ public class EntityParserViewProxy {
                 return new PFamDataSetView(parentComponent, dataSetObject);
             } else if (dataSetObject instanceof GeneBank) {
                 return new GeneBankDataSetView(parentComponent, dataSetObject);
-            } 
+            } else if (dataSetObject instanceof Pirsf) {
+                return new PirsfDataSetView(parentComponent, dataSetObject);
+            }
             throw new NullPointerException("\tThe EntityParserViewProxy Object Class: " + dataSetObject.getClass().getSimpleName() + " does not have a DataSetView extends");
         } else {
             return null;

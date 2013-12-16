@@ -21,6 +21,7 @@ import org.jbiowhdesktop.datasets.pathway.glycan.KEGGGlycanListView;
 import org.jbiowhdesktop.datasets.pathway.reaction.KEGGReactionListView;
 import org.jbiowhdesktop.datasets.protein.ProteinListView;
 import org.jbiowhdesktop.datasets.protfam.UniRefEntryListView;
+import org.jbiowhdesktop.datasets.protgroup.pirsf.PirsfListView;
 import org.jbiowhdesktop.datasets.taxonomy.TaxonomyListView;
 import org.jbiowhpersistence.datasets.disease.omim.entities.OMIM;
 import org.jbiowhpersistence.datasets.domain.pfam.entities.PfamAbioWH;
@@ -37,6 +38,7 @@ import org.jbiowhpersistence.datasets.pathway.kegg.entities.pathway.KEGGPathway;
 import org.jbiowhpersistence.datasets.pathway.kegg.entities.reaction.KEGGReaction;
 import org.jbiowhpersistence.datasets.protclust.entities.UniRefEntry;
 import org.jbiowhpersistence.datasets.protein.entities.Protein;
+import org.jbiowhpersistence.datasets.protgroup.pirsf.entities.Pirsf;
 import org.jbiowhpersistence.datasets.taxonomy.entities.Taxonomy;
 
 /**
@@ -129,6 +131,9 @@ public class ListViewProxy {
                     list.setVisible();
                 } else if (element instanceof GeneBank) {
                     GeneBankListView list = new GeneBankListView(collection, parentComponent);
+                    list.setVisible();
+                }else if (element instanceof Pirsf) {
+                    PirsfListView list = new PirsfListView(collection, parentComponent);
                     list.setVisible();
                 }
             } else {
