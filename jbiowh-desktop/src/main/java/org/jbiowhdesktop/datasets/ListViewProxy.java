@@ -21,6 +21,8 @@ import org.jbiowhdesktop.datasets.pathway.glycan.KEGGGlycanListView;
 import org.jbiowhdesktop.datasets.pathway.reaction.KEGGReactionListView;
 import org.jbiowhdesktop.datasets.protein.ProteinListView;
 import org.jbiowhdesktop.datasets.protfam.UniRefEntryListView;
+import org.jbiowhdesktop.datasets.protgroup.cog.COGListView;
+import org.jbiowhdesktop.datasets.protgroup.orthoxml.OrthoXMLListView;
 import org.jbiowhdesktop.datasets.protgroup.pirsf.PirsfListView;
 import org.jbiowhdesktop.datasets.taxonomy.TaxonomyListView;
 import org.jbiowhpersistence.datasets.disease.omim.entities.OMIM;
@@ -38,6 +40,8 @@ import org.jbiowhpersistence.datasets.pathway.kegg.entities.pathway.KEGGPathway;
 import org.jbiowhpersistence.datasets.pathway.kegg.entities.reaction.KEGGReaction;
 import org.jbiowhpersistence.datasets.protclust.entities.UniRefEntry;
 import org.jbiowhpersistence.datasets.protein.entities.Protein;
+import org.jbiowhpersistence.datasets.protgroup.cog.entities.COGOrthologousGroup;
+import org.jbiowhpersistence.datasets.protgroup.orthoxml.entities.OrthoXMLGroup;
 import org.jbiowhpersistence.datasets.protgroup.pirsf.entities.Pirsf;
 import org.jbiowhpersistence.datasets.taxonomy.entities.Taxonomy;
 
@@ -46,6 +50,7 @@ import org.jbiowhpersistence.datasets.taxonomy.entities.Taxonomy;
  *
  * $Author: r78v10a07@gmail.com $ $LastChangedDate: 2013-03-19 09:38:47 +0100
  * (Tue, 19 Mar 2013) $ $LastChangedRevision: 591 $
+ *
  * @since Feb 13, 2012
  */
 public class ListViewProxy {
@@ -132,8 +137,14 @@ public class ListViewProxy {
                 } else if (element instanceof GeneBank) {
                     GeneBankListView list = new GeneBankListView(collection, parentComponent);
                     list.setVisible();
-                }else if (element instanceof Pirsf) {
+                } else if (element instanceof Pirsf) {
                     PirsfListView list = new PirsfListView(collection, parentComponent);
+                    list.setVisible();
+                } else if (element instanceof COGOrthologousGroup) {
+                    COGListView list = new COGListView(collection, parentComponent);
+                    list.setVisible();
+                } else if (element instanceof OrthoXMLGroup) {
+                    OrthoXMLListView list = new OrthoXMLListView(collection, parentComponent);
                     list.setVisible();
                 }
             } else {

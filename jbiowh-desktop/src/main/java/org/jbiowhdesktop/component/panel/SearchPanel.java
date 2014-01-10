@@ -39,6 +39,8 @@ import org.jbiowhpersistence.datasets.pathway.kegg.search.SearchKEGGPathway;
 import org.jbiowhpersistence.datasets.pathway.kegg.search.SearchKEGGReaction;
 import org.jbiowhpersistence.datasets.protclust.search.SearchUniRef;
 import org.jbiowhpersistence.datasets.protein.search.SearchProtein;
+import org.jbiowhpersistence.datasets.protgroup.cog.search.SearchCOG;
+import org.jbiowhpersistence.datasets.protgroup.orthoxml.search.SearchOrthoXML;
 import org.jbiowhpersistence.datasets.protgroup.pirsf.search.SearchPirsf;
 import org.jbiowhpersistence.datasets.taxonomy.search.SearchTaxonomy;
 import org.jbiowhpersistence.utils.entitymanager.EntityParserFieldProxy;
@@ -577,6 +579,18 @@ jBAddField.addActionListener(new java.awt.event.ActionListener() {
                 break;
             case "PIRSF":
                 searchFactory = new SearchPirsf();
+                setConstrainsVisible(true);
+                break;
+            case "COG":
+                searchFactory = new SearchCOG();
+                setConstrainsVisible(true);
+                break;
+            case "EggNOG":
+                searchFactory = new SearchCOG();
+                setConstrainsVisible(true);
+                break;
+            case "OrthoXML":
+                searchFactory = new SearchOrthoXML();
                 setConstrainsVisible(true);
                 break;
             default:
