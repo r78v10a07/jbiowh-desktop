@@ -19,6 +19,8 @@ import org.jbiowhdesktop.datasets.pathway.glycan.KEGGGlycanDataSetView;
 import org.jbiowhdesktop.datasets.pathway.reaction.KEGGReactionDataSetView;
 import org.jbiowhdesktop.datasets.protein.ProteinDataSetView;
 import org.jbiowhdesktop.datasets.protfam.ProtFamDataSetView;
+import org.jbiowhdesktop.datasets.protgroup.cog.COGDataSetView;
+import org.jbiowhdesktop.datasets.protgroup.orthoxml.OrthoXMLDataSetView;
 import org.jbiowhdesktop.datasets.protgroup.pirsf.PirsfDataSetView;
 import org.jbiowhdesktop.datasets.taxonomy.TaxonomyDataSetView;
 import org.jbiowhpersistence.datasets.disease.omim.entities.OMIM;
@@ -36,6 +38,8 @@ import org.jbiowhpersistence.datasets.pathway.kegg.entities.pathway.KEGGPathway;
 import org.jbiowhpersistence.datasets.pathway.kegg.entities.reaction.KEGGReaction;
 import org.jbiowhpersistence.datasets.protclust.entities.UniRefEntry;
 import org.jbiowhpersistence.datasets.protein.entities.Protein;
+import org.jbiowhpersistence.datasets.protgroup.cog.entities.COGOrthologousGroup;
+import org.jbiowhpersistence.datasets.protgroup.orthoxml.entities.OrthoXMLGroup;
 import org.jbiowhpersistence.datasets.protgroup.pirsf.entities.Pirsf;
 import org.jbiowhpersistence.datasets.taxonomy.entities.Taxonomy;
 
@@ -107,6 +111,10 @@ public class EntityParserViewProxy {
                 return new GeneBankDataSetView(parentComponent, dataSetObject);
             } else if (dataSetObject instanceof Pirsf) {
                 return new PirsfDataSetView(parentComponent, dataSetObject);
+            } else if (dataSetObject instanceof COGOrthologousGroup) {
+                return new COGDataSetView(parentComponent, dataSetObject);
+            } else if (dataSetObject instanceof OrthoXMLGroup) {
+                return new OrthoXMLDataSetView(parentComponent, dataSetObject);
             }
             throw new NullPointerException("\tThe EntityParserViewProxy Object Class: " + dataSetObject.getClass().getSimpleName() + " does not have a DataSetView extends");
         } else {

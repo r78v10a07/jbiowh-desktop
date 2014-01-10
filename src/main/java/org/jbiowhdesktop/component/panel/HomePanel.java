@@ -27,6 +27,8 @@ import org.jbiowhpersistence.datasets.pathway.kegg.KEGGTables;
 import org.jbiowhpersistence.datasets.ppi.MIF25Tables;
 import org.jbiowhpersistence.datasets.protclust.UniRefTables;
 import org.jbiowhpersistence.datasets.protein.ProteinTables;
+import org.jbiowhpersistence.datasets.protgroup.cog.COGTables;
+import org.jbiowhpersistence.datasets.protgroup.orthoxml.OrthoXMLTables;
 import org.jbiowhpersistence.datasets.protgroup.pirsf.PirsfTables;
 import org.jbiowhpersistence.datasets.taxonomy.TaxonomyTables;
 import org.jbiowhpersistence.utils.entitymanager.JBioWHPersistence;
@@ -232,7 +234,7 @@ jTables.addMouseListener(new java.awt.event.MouseAdapter() {
                 case "MIF25Loader":
                     model.setContents(whdbmsFactory.countTablesRow(MIF25Tables.getInstance().getTables()));
                     break;
-                case "ProtFamLoader":
+                case "ProtsFamLoader":
                     model.setContents(whdbmsFactory.countTablesRow(UniRefTables.getInstance().getTables()));
                     break;
                 case "DrugLoader":
@@ -252,6 +254,15 @@ jTables.addMouseListener(new java.awt.event.MouseAdapter() {
                     break;
                 case "PIRSFLoader":
                     model.setContents(whdbmsFactory.countTablesRow(PirsfTables.getInstance().getTables()));
+                    break;
+                case "COGLoader":
+                    model.setContents(whdbmsFactory.countTablesRow(COGTables.getInstance().getTables()));
+                    break;
+                case "EggNOGLoader":
+                    model.setContents(whdbmsFactory.countTablesRow(COGTables.getInstance().getTables()));
+                    break;
+                case "OrthoXMLLoader":
+                    model.setContents(whdbmsFactory.countTablesRow(OrthoXMLTables.getInstance().getTables()));
                     break;
             }
 
