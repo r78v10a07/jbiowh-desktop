@@ -9,8 +9,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import org.eclipse.persistence.exceptions.DatabaseException;
+import org.jbiowhdbms.dbms.JBioWHDBMSSingleton;
 import org.jbiowhdbms.dbms.JBioWHDBMS;
-import org.jbiowhdbms.dbms.WHDBMSFactory;
 import org.jbiowhdesktop.actions.tabbedpanel.TabbedPanelCloseActionListener;
 import org.jbiowhdesktop.component.panel.sql.SQLBrowsePanel;
 import org.jbiowhdesktop.component.panel.tabbedpanel.ClosePanel;
@@ -49,7 +49,7 @@ public class HomePanel extends javax.swing.JPanel {
      * @param parentComponent the parent JComponent (Should be a JTabbedPane)
      * @param whdbmsFactory the WDBMS factory
      */
-    public HomePanel(JComponent parentComponent, WHDBMSFactory whdbmsFactory) {
+    public HomePanel(JComponent parentComponent, JBioWHDBMS whdbmsFactory) {
         this.parentComponent = parentComponent;
         uniqueKey = UUID.randomUUID();
         if (whdbmsFactory != null) {
@@ -64,7 +64,7 @@ public class HomePanel extends javax.swing.JPanel {
                 JTabbedPane jTabbedPane2 = (JTabbedPane) parentComponent;
                 ListTableModel model = (ListTableModel) getjTDataSets().getModel();
                 if (whdbmsFactory == null) {
-                    whdbmsFactory = JBioWHDBMS.getInstance().getWhdbmsFactory();
+                    whdbmsFactory = JBioWHDBMSSingleton.getInstance().getWhdbmsFactory();
                 }
                 model.setContents(DataSetPersistence.getInstance().loadDataSet(JBioWHPersistence.getInstance().getWHEntityManager(whdbmsFactory.getUrl())));
                 jTabbedPane2.addTab("Home: " + whdbmsFactory.getMainURLParsed(), this);
@@ -290,7 +290,7 @@ jTables.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JTable jTDataSets;
     private javax.swing.JTable jTables;
     // End of variables declaration//GEN-END:variables
-    private WHDBMSFactory whdbmsFactory;
+    private JBioWHDBMS whdbmsFactory;
     private JComponent parentComponent;
     private UUID uniqueKey;
 }

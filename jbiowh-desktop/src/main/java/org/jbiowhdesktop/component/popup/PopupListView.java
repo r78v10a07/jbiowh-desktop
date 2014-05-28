@@ -7,8 +7,8 @@ import java.awt.event.KeyEvent;
 import java.util.Collection;
 import java.util.Set;
 import javax.swing.*;
+import org.jbiowhdbms.dbms.JBioWHDBMSSingleton;
 import org.jbiowhdbms.dbms.JBioWHDBMS;
-import org.jbiowhdbms.dbms.WHDBMSFactory;
 import org.jbiowhdesktop.component.dialog.progress.ProgressDialog;
 import org.jbiowhdesktop.component.graph.EntityRelationshipDialog;
 import org.jbiowhdesktop.component.panel.BasicConstrain;
@@ -71,7 +71,7 @@ public class PopupListView extends BasicPopup {
                 && JBioWHPersistence.getInstance().getSchemas().size() > 1) {
             JMenu insertToOtherSchema = createJMenu("Insert selected to");
             for (String key : JBioWHPersistence.getInstance().getSchemas().keySet()) {
-                WHDBMSFactory factory = JBioWHDBMS.getInstance().getWhdbmsFactory(key);
+                JBioWHDBMS factory = JBioWHDBMSSingleton.getInstance().getWhdbmsFactory(key);
                 if (!factory.equals(JBioWHPersistence.getInstance().getWhdbmsFactory())) {
                     insertToOtherSchema.add(createJMenuItem(factory.getUrl(), 0, 0));
                 }

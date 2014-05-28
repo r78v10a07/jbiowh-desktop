@@ -32,7 +32,7 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 import org.jbiowhcore.logger.VerbLogger;
-import org.jbiowhdbms.dbms.WHDBMSFactory;
+import org.jbiowhdbms.dbms.JBioWHDBMS;
 import org.jbiowhdesktop.actions.tabbedpanel.TabbedPanelCloseActionListener;
 import org.jbiowhdesktop.component.panel.sql.syntax.SQLDocumentFilter;
 import org.jbiowhdesktop.component.panel.tabbedpanel.ClosePanel;
@@ -56,7 +56,7 @@ public class SQLEditorPanel extends javax.swing.JPanel {
      *
      * @param parentComponent the Frame from which the dialog is displayed
      */
-    public SQLEditorPanel(JComponent parentComponent, WHDBMSFactory wHDBMSFactory) {
+    public SQLEditorPanel(JComponent parentComponent, JBioWHDBMS wHDBMSFactory) {
         this.parentComponent = parentComponent;
         this.wHDBMSFactory = wHDBMSFactory;
         uniqueKey = UUID.randomUUID();
@@ -506,6 +506,6 @@ public class SQLEditorPanel extends javax.swing.JPanel {
     private UndoAction undoAction;
     private RedoAction redoAction;
     private UndoManager undo = new UndoManager();
-    private WHDBMSFactory wHDBMSFactory;
+    private JBioWHDBMS wHDBMSFactory;
     private UUID uniqueKey;
 }

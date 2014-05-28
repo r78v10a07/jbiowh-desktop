@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
+import org.jbiowhdbms.dbms.JBioWHDBMSSingleton;
 import org.jbiowhdbms.dbms.JBioWHDBMS;
-import org.jbiowhdbms.dbms.WHDBMSFactory;
 import org.jbiowhdesktop.component.panel.result.ResultPanelFactory;
 import org.jbiowhdesktop.component.panel.sql.SQLBrowsePanel;
 import org.jbiowhdesktop.component.panel.sql.SQLEditorPanel;
@@ -88,14 +88,14 @@ public class PopupSQLSchema extends BasicPopup {
         if (source instanceof JMenuItem) {
             JMenuItem jMenuItem = (JMenuItem) source;
             if (currentSelection != null) {
-                WHDBMSFactory factory;
+                JBioWHDBMS factory;
                 DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
                 DefaultMutableTreeNode parent = (DefaultMutableTreeNode) currentNode.getParent();
                 switch (jMenuItem.getText()) {
                     case "Select Table - Limit 1000":
                         if (parentComponent instanceof JTabbedPane) {
                             try {
-                                factory = JBioWHDBMS.getInstance().getWhdbmsFactory(((String) parent.getUserObject()));
+                                factory = JBioWHDBMSSingleton.getInstance().getWhdbmsFactory(((String) parent.getUserObject()));
                                 if (factory != null) {
                                     SQLBrowsePanel browsePanel = new SQLBrowsePanel(
                                             (String) currentNode.getUserObject(),
@@ -110,7 +110,7 @@ public class PopupSQLSchema extends BasicPopup {
                         }
                         break;
                     case "Set as main schema":
-                        JBioWHDBMS.getInstance().setMainURL(((String) currentNode.getUserObject()));
+                        JBioWHDBMSSingleton.getInstance().setMainURL(((String) currentNode.getUserObject()));
                         JBioWHPersistence.getInstance().setAsMainSchema(((String) currentNode.getUserObject()), false);
                         break;
                     case "Close schema":
@@ -118,14 +118,14 @@ public class PopupSQLSchema extends BasicPopup {
                             //Hide the close button on the main windows if there is not other connection open
                             ResultPanelFactory.getInstance().getsQLTableViewPanel().removeNode(((String) currentNode.getUserObject()));
                             JBioWHPersistence.getInstance().closeSchema(((String) currentNode.getUserObject()), true);
-                            JBioWHDBMS.getInstance().closeConnection(((String) currentNode.getUserObject()));
+                            JBioWHDBMSSingleton.getInstance().closeConnection(((String) currentNode.getUserObject()));
                         } catch (SQLException ex) {
                             int type = JOptionPane.ERROR_MESSAGE;
                             JOptionPane.showMessageDialog(parentComponent, ex.getMessage(), "SQL Error", type);
                         }
                         break;
                     case "Create Table":
-                        factory = JBioWHDBMS.getInstance().getWhdbmsFactory(((String) currentNode.getUserObject()));
+                        factory = JBioWHDBMSSingleton.getInstance().getWhdbmsFactory(((String) currentNode.getUserObject()));
                         if (factory != null) {
                             CreateTable table = new CreateTable(new JFrame(), true, factory);
                             table.setLocationRelativeTo(this);
@@ -143,7 +143,7 @@ public class PopupSQLSchema extends BasicPopup {
                         break;
                     case "Remove Table":
                         try {
-                            factory = JBioWHDBMS.getInstance().getWhdbmsFactory(((String) parent.getUserObject()));
+                            factory = JBioWHDBMSSingleton.getInstance().getWhdbmsFactory(((String) parent.getUserObject()));
                             if (factory != null) {
                                 factory.dropTable(((String) currentNode.getUserObject()));
                                 ResultPanelFactory.getInstance().getsQLTableViewPanel().removeCurrentNode();

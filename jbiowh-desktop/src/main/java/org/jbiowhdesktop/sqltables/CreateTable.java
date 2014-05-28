@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
-import org.jbiowhdbms.dbms.WHDBMSFactory;
+import org.jbiowhdbms.dbms.JBioWHDBMS;
 import org.jbiowhdbms.dbms.sql.table.SQLTable;
 import org.jbiowhdbms.dbms.sql.table.SQLTableColumn;
 import org.jbiowhdbms.dbms.sql.table.SQLTableIndex;
@@ -40,7 +40,7 @@ public class CreateTable extends javax.swing.JDialog {
      * @param modal
      * @param whdbms
      */
-    public CreateTable(java.awt.Frame parent, boolean modal, WHDBMSFactory whdbms) {
+    public CreateTable(java.awt.Frame parent, boolean modal, JBioWHDBMS whdbms) {
         super(parent, modal);
         sqlTable = new SQLTable();
         dataTypes = whdbms.getDBMSDataTypes().toArray();

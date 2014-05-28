@@ -8,7 +8,7 @@ import org.jbiowhdesktop.component.panel.AbstractDataSetView;
 import org.jbiowhpersistence.datasets.gene.genebank.entities.GeneBank;
 import org.jbiowhpersistence.datasets.gene.genebank.entities.GeneBankAccession;
 import org.jbiowhpersistence.datasets.gene.genebank.entities.GeneBankCDS;
-import org.jbiowhpersistence.datasets.gene.genebank.entities.GeneBankFeatures;
+import org.jbiowhpersistence.datasets.gene.genebank.entities.GeneBankFeature;
 
 /**
  * This class handled the GeneBank View
@@ -55,13 +55,13 @@ public class GeneBankDataSetView extends AbstractDataSetView {
         ArrayList string = new ArrayList();
         GeneBank gene = (GeneBank) dataSetObject;
 
-        if (!gene.getGeneBankAccessions().isEmpty()) {
+        if (!gene.getGeneBankAccession().isEmpty()) {
             string.add("Accessions");
         }
-        if (!gene.getGeneBankFeatureses().isEmpty()) {
+        if (!gene.getGeneBankFeature().isEmpty()) {
             string.add("Features");
         }
-        if (!gene.getGeneBankCDSs().isEmpty()) {
+        if (!gene.getGeneBankCDS().isEmpty()) {
             string.add("CDS");
         }
 
@@ -77,7 +77,7 @@ public class GeneBankDataSetView extends AbstractDataSetView {
                 case "Accessions":
                     if (findOrShow) {
                         data.clear();
-                        for (GeneBankAccession dbts : gene.getGeneBankAccessions()) {
+                        for (GeneBankAccession dbts : gene.getGeneBankAccession()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getAccession());
                             data.add(list);
@@ -88,7 +88,7 @@ public class GeneBankDataSetView extends AbstractDataSetView {
                 case "Features":
                     if (findOrShow) {
                         data.clear();
-                        for (GeneBankFeatures dbts : gene.getGeneBankFeatureses()) {
+                        for (GeneBankFeature dbts : gene.getGeneBankFeature()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getKeyName());
                             list.add(dbts.getLocation());
@@ -110,7 +110,7 @@ public class GeneBankDataSetView extends AbstractDataSetView {
                 case "CDS":
                     if (findOrShow) {
                         data.clear();
-                        for (GeneBankCDS dbts : gene.getGeneBankCDSs()) {
+                        for (GeneBankCDS dbts : gene.getGeneBankCDS()) {
                             ArrayList<Object> list = new ArrayList<>();
                             list.add(dbts.getProteinGi());
                             list.add(dbts.getLocation());

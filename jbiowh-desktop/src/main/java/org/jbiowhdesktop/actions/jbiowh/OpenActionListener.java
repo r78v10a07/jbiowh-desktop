@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import org.jbiowhcore.logger.VerbLogger;
+import org.jbiowhdbms.dbms.JBioWHDBMSSingleton;
 import org.jbiowhdbms.dbms.JBioWHDBMS;
-import org.jbiowhdbms.dbms.WHDBMSFactory;
 import org.jbiowhdesktop.JBioWH;
 import org.jbiowhdesktop.OpenWHDB;
 import org.jbiowhdesktop.component.panel.result.ResultPanelFactory;
@@ -57,7 +57,7 @@ public class OpenActionListener implements ActionListener {
         open.setLocationRelativeTo(jbiowh);
         open.setVisible(true);
         if (!open.isCanceled()) {
-            WHDBMSFactory factory = JBioWHDBMS.getInstance().getWhdbmsFactory(open.getUrl());
+            JBioWHDBMS factory = JBioWHDBMSSingleton.getInstance().getWhdbmsFactory(open.getUrl());
             if (factory != null) {
                 try {
                     if (factory.isConnOpen()) {
