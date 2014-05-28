@@ -7,8 +7,8 @@ import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
+import org.jbiowhdbms.dbms.JBioWHDBMSSingleton;
 import org.jbiowhdbms.dbms.JBioWHDBMS;
-import org.jbiowhdbms.dbms.WHDBMSFactory;
 import org.jbiowhdesktop.component.panel.TreeViewPanel;
 import org.jbiowhdesktop.component.popup.PopupSQLSchema;
 import org.jbiowhpersistence.utils.entitymanager.JBioWHPersistence;
@@ -42,7 +42,7 @@ public class SQLTableViewPanel extends TreeViewPanel {
      */
     @Override
     public DefaultMutableTreeNode addObject(Object child) {
-        WHDBMSFactory factory = JBioWHDBMS.getInstance().getWhdbmsFactory();
+        JBioWHDBMS factory = JBioWHDBMSSingleton.getInstance().getWhdbmsFactory();
         DefaultMutableTreeNode treeNode = addObject(null, child, true);
 
         Map<String, List<String>> tables = factory.getTablesOnSchema();
@@ -62,7 +62,7 @@ public class SQLTableViewPanel extends TreeViewPanel {
      * @param factory the JBioWHPersistenceFactory with the connection
      * @return a DefaultMutableTreeNode object
      */
-    public DefaultMutableTreeNode addObject(Object child, WHDBMSFactory factory) {
+    public DefaultMutableTreeNode addObject(Object child, JBioWHDBMS factory) {
         DefaultMutableTreeNode treeNode = addObject(null, child, true);
 
         Map<String, List<String>> tables = factory.getTablesOnSchema();
@@ -81,7 +81,7 @@ public class SQLTableViewPanel extends TreeViewPanel {
      * @param factory the JBioWHPersistenceFactory with the connection
      * @return a DefaultMutableTreeNode object
      */
-    public DefaultMutableTreeNode addNewTables(WHDBMSFactory factory) {
+    public DefaultMutableTreeNode addNewTables(JBioWHDBMS factory) {
         TreePath schema = findNode(factory.getUrl().substring(factory.getUrl().indexOf("//") + 2));
         if (schema != null) {
             DefaultMutableTreeNode treeNode = (DefaultMutableTreeNode) schema.getLastPathComponent();

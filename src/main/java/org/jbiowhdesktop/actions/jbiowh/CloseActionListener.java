@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import org.jbiowhcore.logger.VerbLogger;
-import org.jbiowhdbms.dbms.JBioWHDBMS;
+import org.jbiowhdbms.dbms.JBioWHDBMSSingleton;
 import org.jbiowhdesktop.JBioWH;
 import org.jbiowhdesktop.component.panel.result.ResultPanelFactory;
 import org.jbiowhpersistence.utils.entitymanager.JBioWHPersistence;
@@ -37,8 +37,8 @@ public class CloseActionListener implements ActionListener {
             try {
                 ResultPanelFactory.getInstance().getsQLTableViewPanel().removeNode(JBioWHPersistence.getInstance().getMainURLParsed());
                 JBioWHPersistence.getInstance().closeSchema(false);
-                JBioWHDBMS.getInstance().closeConnection();
-                if (JBioWHDBMS.getInstance().getWhdbmsFactory() == null || !JBioWHDBMS.getInstance().getWhdbmsFactory().isConnOpen()) {
+                JBioWHDBMSSingleton.getInstance().closeConnection();
+                if (JBioWHDBMSSingleton.getInstance().getWhdbmsFactory() == null || !JBioWHDBMSSingleton.getInstance().getWhdbmsFactory().isConnOpen()) {
                     jbiowh.getjMOpenSQLScript().setEnabled(false);
                     jbiowh.getjMOpen().setEnabled(true);
                     jbiowh.getjMClose().setEnabled(false);

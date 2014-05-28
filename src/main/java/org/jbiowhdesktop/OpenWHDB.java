@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import org.jbiowhcore.basic.JBioWHUserData;
 import org.jbiowhcore.logger.VerbLogger;
-import org.jbiowhdbms.dbms.JBioWHDBMS;
+import org.jbiowhdbms.dbms.JBioWHDBMSSingleton;
 import org.jbiowhdbms.dbms.mysql.WHMySQL;
 import org.jbiowhdesktop.sqltables.CreateSchemaDialog;
 import org.jbiowhpersistence.utils.entitymanager.JBioWHPersistence;
@@ -339,13 +339,13 @@ public class OpenWHDB extends javax.swing.JDialog {
         if (jCDBMS.getSelectedItem().equals("MySQL")) {
             try {
                 url = "jdbc:mysql://" + jTServer.getText() + ":" + jTPort.getText() + "/" + jTDB.getText();
-                if (JBioWHDBMS.getInstance().getWhdbmsFactory(url) == null || !JBioWHDBMS.getInstance().getWhdbmsFactory(url).isConnOpen()) {
+                if (JBioWHDBMSSingleton.getInstance().getWhdbmsFactory(url) == null || !JBioWHDBMSSingleton.getInstance().getWhdbmsFactory(url).isConnOpen()) {
                     try {
-                        JBioWHDBMS.getInstance().setWhdbmsFactory(new WHMySQL(jTDriver.getText(),
+                        JBioWHDBMSSingleton.getInstance().setWhdbmsFactory(new WHMySQL(jTDriver.getText(),
                                 url,
                                 jTUser.getText(),
                                 new String(jPassword.getPassword()), jCheckDefaultWHSchema.isSelected()));
-                        JBioWHDBMS.getInstance().getWhdbmsFactory(url).openConnection(createSchema);
+                        JBioWHDBMSSingleton.getInstance().getWhdbmsFactory(url).openConnection(createSchema);
                         if (jCheckDefaultWHSchema.isSelected()) {
                             JBioWHPersistence.getInstance().openSchema(new JBioWHUserData(jTDriver.getText(),
                                     url,
@@ -353,12 +353,12 @@ public class OpenWHDB extends javax.swing.JDialog {
                                     new String(jPassword.getPassword()), true), !createSchema, jCheckMainDB.isSelected());
                         }
                         if (jCheckMainDB.isSelected()) {
-                            JBioWHDBMS.getInstance().setMainURL(url);
+                            JBioWHDBMSSingleton.getInstance().setMainURL(url);
                         }
                         if (createSchema) {
                             setVisible(false);
                             System.out.println("1");
-                            CreateSchemaDialog createSchemaDialog = new CreateSchemaDialog(parent, true, JBioWHDBMS.getInstance().getWhdbmsFactory(url));
+                            CreateSchemaDialog createSchemaDialog = new CreateSchemaDialog(parent, true, JBioWHDBMSSingleton.getInstance().getWhdbmsFactory(url));
                             System.out.println("2");
                             createSchemaDialog.setLocationRelativeTo(parent);
                             System.out.println("3");

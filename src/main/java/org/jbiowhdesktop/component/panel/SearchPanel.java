@@ -169,7 +169,7 @@ public class SearchPanel extends BasicConstrain {
         });
 
         jLConstrains.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLConstrains.setText("Contrains");
+        jLConstrains.setText("Constrains");
 
         jTConstrain.setModel(new org.jbiowhdesktop.component.table.model.ConstrainsTableModel(
             new JPLConstrains(),

@@ -13,8 +13,8 @@ import javax.swing.SwingWorker;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.DocumentFilter;
 import org.jbiowhcore.logger.VerbLogger;
+import org.jbiowhdbms.dbms.JBioWHDBMSSingleton;
 import org.jbiowhdbms.dbms.JBioWHDBMS;
-import org.jbiowhdbms.dbms.WHDBMSFactory;
 import org.jbiowhdbms.dbms.mysql.WHMySQL;
 import org.jbiowhdesktop.component.dialog.progress.ProgressDialog;
 import org.jbiowhdesktop.component.file.FileChooser;
@@ -39,7 +39,7 @@ public class CreateSchemaDialog extends javax.swing.JDialog {
      * @param modal true to keep front its parent
      * @param wHDBMSFactory the JBioWHPersistence factory
      */
-    public CreateSchemaDialog(java.awt.Frame parent, boolean modal, WHDBMSFactory wHDBMSFactory) {
+    public CreateSchemaDialog(java.awt.Frame parent, boolean modal, JBioWHDBMS wHDBMSFactory) {
         super(parent, modal);
         this.parent = parent;
         this.wHDBMSFactory = wHDBMSFactory;
@@ -277,5 +277,5 @@ public class CreateSchemaDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private Frame parent;
     private SQLEditorPanel sQLEditorPanel;
-    private WHDBMSFactory wHDBMSFactory;
+    private JBioWHDBMS wHDBMSFactory;
 }

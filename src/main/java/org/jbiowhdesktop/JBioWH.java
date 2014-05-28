@@ -7,8 +7,8 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.DefaultEditorKit;
 import org.jbiowhcore.logger.VerbLogger;
+import org.jbiowhdbms.dbms.JBioWHDBMSSingleton;
 import org.jbiowhdbms.dbms.JBioWHDBMS;
-import org.jbiowhdbms.dbms.WHDBMSFactory;
 import org.jbiowhdesktop.actions.jbiowh.CloseActionListener;
 import org.jbiowhdesktop.actions.jbiowh.MSLoadXMLActionListener;
 import org.jbiowhdesktop.actions.jbiowh.OpenActionListener;
@@ -468,7 +468,7 @@ public class JBioWH extends javax.swing.JFrame {
     private void jMExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMExitActionPerformed
         try {
             JBioWHPersistence.getInstance().closeAll();
-            JBioWHDBMS.getInstance().closeAll();
+            JBioWHDBMSSingleton.getInstance().closeAll();
         } catch (SQLException ex) {
             VerbLogger.getInstance().setLevel(VerbLogger.getInstance().ERROR);
             VerbLogger.getInstance().log(this.getClass(), ex.getMessage());
@@ -529,7 +529,7 @@ public class JBioWH extends javax.swing.JFrame {
     }//GEN-LAST:event_jMCloseAllConstActionPerformed
 
     private void jMSQLEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSQLEditorActionPerformed
-        SQLEditorPanel sQLEditorPanel = new SQLEditorPanel(jTabbedPane2, JBioWHDBMS.getInstance().getWhdbmsFactory());
+        SQLEditorPanel sQLEditorPanel = new SQLEditorPanel(jTabbedPane2, JBioWHDBMSSingleton.getInstance().getWhdbmsFactory());
         sQLEditorPanel.setVisible();
 
     }//GEN-LAST:event_jMSQLEditorActionPerformed
@@ -537,7 +537,7 @@ public class JBioWH extends javax.swing.JFrame {
     private void jMAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAllActionPerformed
         if (jTabbedPane2.getSelectedComponent() instanceof SQLEditorPanel) {
             SQLEditorPanel sQLEditorPanel = (SQLEditorPanel) jTabbedPane2.getSelectedComponent();
-            WHDBMSFactory wHDBMSFactory = JBioWHDBMS.getInstance().getWhdbmsFactory();
+            JBioWHDBMS wHDBMSFactory = JBioWHDBMSSingleton.getInstance().getWhdbmsFactory();
             try {
                 List<List> results = wHDBMSFactory.executeMultipleSQLSelect(sQLEditorPanel.getAllSQL(), 0, 1000);
                 for (List result : results) {
@@ -557,7 +557,7 @@ public class JBioWH extends javax.swing.JFrame {
     private void jMCurrentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMCurrentActionPerformed
         if (jTabbedPane2.getSelectedComponent() instanceof SQLEditorPanel) {
             SQLEditorPanel sQLEditorPanel = (SQLEditorPanel) jTabbedPane2.getSelectedComponent();
-            WHDBMSFactory wHDBMSFactory = JBioWHDBMS.getInstance().getWhdbmsFactory();
+            JBioWHDBMS wHDBMSFactory = JBioWHDBMSSingleton.getInstance().getWhdbmsFactory();
 
             SQLBrowsePanel browsePanel;
             try {
@@ -588,7 +588,7 @@ public class JBioWH extends javax.swing.JFrame {
     private void jMSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSelectionActionPerformed
         if (jTabbedPane2.getSelectedComponent() instanceof SQLEditorPanel) {
             SQLEditorPanel sQLEditorPanel = (SQLEditorPanel) jTabbedPane2.getSelectedComponent();
-            WHDBMSFactory wHDBMSFactory = JBioWHDBMS.getInstance().getWhdbmsFactory();
+            JBioWHDBMS wHDBMSFactory = JBioWHDBMSSingleton.getInstance().getWhdbmsFactory();
             try {
                 List<List> results = wHDBMSFactory.executeMultipleSQLSelect(sQLEditorPanel.getSQLSelection(), 0, 1000);
                 for (List result : results) {
@@ -672,7 +672,7 @@ public class JBioWH extends javax.swing.JFrame {
             for (File f : fileChooser.getjFileChooser1().getSelectedFiles()) {
                 SQLEditorPanel sQLEditorPanel;
                 try {
-                    sQLEditorPanel = new SQLEditorPanel(jTabbedPane2, JBioWHDBMS.getInstance().getWhdbmsFactory());
+                    sQLEditorPanel = new SQLEditorPanel(jTabbedPane2, JBioWHDBMSSingleton.getInstance().getWhdbmsFactory());
                     sQLEditorPanel.openSQLFile(f);
                     sQLEditorPanel.setVisible();
                 } catch (IOException ex) {
@@ -721,7 +721,7 @@ public class JBioWH extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMViewRelationshipActionPerformed
 
-    public void viewHomeTabbedPanel(WHDBMSFactory whdbmsFactory) {
+    public void viewHomeTabbedPanel(JBioWHDBMS whdbmsFactory) {
         HomePanel homePanel = new HomePanel(jTabbedPane2, whdbmsFactory);
         homePanel.setVisible();
     }

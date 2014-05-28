@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.Arrays;
 import javax.swing.text.*;
 import org.jbiowhcore.logger.VerbLogger;
-import org.jbiowhdbms.dbms.WHDBMSFactory;
+import org.jbiowhdbms.dbms.JBioWHDBMS;
 
 /**
  * This Class is the document filter to put color in the editor
@@ -22,9 +22,9 @@ public class SQLDocumentFilter extends DocumentFilter {
     private final Style sqlFunctionStyle;
     private final Style sqlOperatorStyle;
     private final Style sqlStringStyle;
-    private WHDBMSFactory wHDBMSFactory;
+    private JBioWHDBMS wHDBMSFactory;
 
-    public SQLDocumentFilter(WHDBMSFactory wHDBMSFactory) {
+    public SQLDocumentFilter(JBioWHDBMS wHDBMSFactory) {
         this.wHDBMSFactory = wHDBMSFactory;
         sc = new StyleContext();
         sqlStyle = sc.addStyle("SQLStyle", null);
