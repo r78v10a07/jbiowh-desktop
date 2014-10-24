@@ -60,7 +60,6 @@ public class DrugBankDataSetView extends AbstractDataSetView {
 
         basicData.add("Name: " + drug.getName() + "\n");
         basicData.add("CAS: " + drug.getcASNumber() + "\n");
-        basicData.add("Version: " + drug.getVersion() + "\n");
         basicData.add("Updated: " + drug.getUpdated() + "\n");
         basicData.add("Created: " + drug.getCreated() + "\n\n");
         basicData.add("Description: " + drug.getDescription() + "\n");
@@ -68,7 +67,6 @@ public class DrugBankDataSetView extends AbstractDataSetView {
         basicData.add("Pharmacology: " + drug.getPharmacology() + "\n");
         basicData.add("Mechanism Of Action: " + drug.getMechanismOfAction() + "\n");
         basicData.add("Toxicity: " + drug.getToxicity() + "\n");
-        basicData.add("Biotransformation: " + drug.getBiotransformation() + "\n");
         basicData.add("Absorption: " + drug.getAbsorption() + "\n");
         basicData.add("HalfLife: " + drug.getHalfLife() + "\n");
         basicData.add("ProteinBinding: " + drug.getProteinBinding() + "\n");
@@ -380,7 +378,7 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                         data.clear();
                         for (DrugBankManufacturer dbts : drug.getDrugBankManufacturer()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getGeneric());
+                            list.add(dbts.isGeneric());
                             list.add(dbts.getManufacturer());
                             data.add(list);
                         }
