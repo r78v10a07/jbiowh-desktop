@@ -19,11 +19,11 @@ public class About extends javax.swing.JDialog {
     }
 
     private String versioning() {
-        return "Revision: 353";
+        return "Revision: 1021";
     }
 
     private String lastChangeDate() {
-        return "$LastChangedDate: 2012-12-04 11:57:42 +0100 (Tue, 04 Dec 2012) $";
+        return "2014-10-29";
     }
 
     /**
