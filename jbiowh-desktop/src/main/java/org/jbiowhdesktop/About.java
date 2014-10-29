@@ -3,9 +3,9 @@ package org.jbiowhdesktop;
 /**
  * This JDialog is the About Box
  *
- * $Author: r78v10a07@gmail.com $ 
- * $LastChangedDate: 2012-12-04 11:57:42 +0100 (Tue, 04 Dec 2012) $
- * $LastChangedRevision: 353 $
+ * $Author: r78v10a07@gmail.com $ $LastChangedDate: 2012-12-04 11:57:42 +0100
+ * (Tue, 04 Dec 2012) $ $LastChangedRevision: 353 $
+ *
  * @since Feb 9, 2012
  */
 public class About extends javax.swing.JDialog {
@@ -21,8 +21,8 @@ public class About extends javax.swing.JDialog {
     private String versioning() {
         return "Revision: 353";
     }
-    
-    private String lastChangeDate(){
+
+    private String lastChangeDate() {
         return "$LastChangedDate: 2012-12-04 11:57:42 +0100 (Tue, 04 Dec 2012) $";
     }
 

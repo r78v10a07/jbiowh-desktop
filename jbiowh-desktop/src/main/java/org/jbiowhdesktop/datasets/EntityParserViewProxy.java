@@ -1,6 +1,7 @@
 package org.jbiowhdesktop.datasets;
 
 import java.util.Collection;
+import java.util.Vector;
 import javax.swing.JComponent;
 import org.jbiowhcore.logger.VerbLogger;
 import org.jbiowhdesktop.component.panel.AbstractDataSetView;
@@ -71,9 +72,9 @@ public class EntityParserViewProxy {
     private AbstractDataSetView getDataSetView(JComponent parentComponent, Object dataSetObject) throws
             NullPointerException {
         if (dataSetObject != null) {
-            VerbLogger.getInstance().log(this.getClass(), "\tEntityParserViewProxy Object Class: " + dataSetObject.getClass().getSimpleName());
+            VerbLogger.getInstance().log(this.getClass(), "EntityParserViewProxy Object Class: " + dataSetObject.getClass().getSimpleName());
             if (dataSetObject instanceof Collection) {
-                if (((Collection) dataSetObject).size() == 1) {
+                if (((Collection) dataSetObject).size() >= 1) {
                     dataSetObject = ((Collection) dataSetObject).iterator().next();
                 }
             }
