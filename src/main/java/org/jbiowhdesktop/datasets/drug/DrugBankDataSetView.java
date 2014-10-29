@@ -3,6 +3,8 @@ package org.jbiowhdesktop.datasets.drug;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import org.jbiowhcore.logger.VerbLogger;
 import org.jbiowhdesktop.component.panel.AbstractDataSetView;
@@ -303,40 +305,36 @@ public class DrugBankDataSetView extends AbstractDataSetView {
                     }
                     break;
                 case "Drug Interactions":
+                    SearchDrugBank drugSearch = new SearchDrugBank();
                     if (findOrShow) {
                         data.clear();
                         for (DrugBankDrugInteraction dbts : drug.getDrugBankDrugInteraction()) {
                             ArrayList<Object> list = new ArrayList<>();
-                            list.add(dbts.getDrug());
-                            list.add(dbts.getDescription());
-                            data.add(list);
+                            List<DrugBank> d = drugSearch.searchByWID(dbts.getDrug(), DrugBank.class);
+                            if (!d.isEmpty()) {
+                                list.add(d.get(0).getId());
+                                list.add(d.get(0).getName());
+                                list.add(dbts.getDescription());
+                                data.add(list);
+                            }
                         }
-                        setjTViewColumn(data, 2);
+                        setjTViewColumn(data, 3);
                     } else {
                         if (jTLinks.getSelectedRow() >= 0 && jTLinks.getSelectedRow() < jTLinks.getRowCount()) {
-                            for (DrugBankDrugInteraction dbts : drug.getDrugBankDrugInteraction()) {
-                                if (jTLinks.getValueAt(jTLinks.getSelectedRow(), 0).equals(dbts.getDrug())) {
-                                    try {
-                                        SearchDrugBank drugSearch = new SearchDrugBank();
-                                        String nameFormat = "DB";
-                                        String dname = (new Long(dbts.getDrug())).toString();
-                                        for (int i = 0; i < 5 - dname.length(); i++) {
-                                            nameFormat = nameFormat + "0";
-                                        }
-                                        nameFormat = nameFormat + dname;
-                                        System.out.println("name: " + nameFormat);
-                                        List<DrugBank> d = drugSearch.search(nameFormat, null);
-                                        EntityParserViewProxy viewProxy = new EntityParserViewProxy(parentComponent, d);
-                                        viewProxy.setVisible();
-                                        break;
-                                    } catch (SQLException ex) {
-                                        VerbLogger.getInstance().log(this.getClass(), ex.getMessage());
-                                    }
+                            try {
+                                List<DrugBank> d = drugSearch.search((String) jTLinks.getValueAt(jTLinks.getSelectedRow(), 0), null);
+                                if (!d.isEmpty()) {
+                                    EntityParserViewProxy viewProxy = new EntityParserViewProxy(parentComponent, d.get(0));
+                                    viewProxy.setVisible();
                                 }
+                            } catch (SQLException ex) {
+                                VerbLogger.getInstance().log(this.getClass(), ex.getMessage());
                             }
+
                         }
                     }
                     break;
+
                 case "Categories":
                     if (findOrShow) {
                         data.clear();
